@@ -13,4 +13,5 @@
 
 class User < ActiveRecord::Base
   attr_accessible :account, :json, :name, :psw
+  has_many :emails
 end
