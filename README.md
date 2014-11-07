@@ -18,17 +18,16 @@ Useful resources:<br>
        https://github.com/plataformatec/devise
        https://github.com/plataformatec/devise/blob/master/lib/devise/controllers/helpers.rb
 
-Please Try it out :)<br>
-Li<br>
-_______
+____________
+
 Add bootstrap<br>
-       remember not to use --force unless you know what you're doing
-       accidently delete show button, add it back but without bootstrap layout
+       <ul>remember not to use --force unless you know what you're doing</ul>
+       <ul>accidently delete show button, add it back but without bootstrap layout</ul>
 Adjust layout<br>
-       move the sign in/out label to the bottom as footer
-       adjust display value and scroll bar back to normal
+       <ul>move the sign in/out label to the bottom as footer</ul>
+       <ul>adjust display value and scroll bar back to normal</ul>
               since bootstrap --force will overwrite former changes to layout
 
 Please Try it out :)<br>
 Li<br>
-_______
+____________
