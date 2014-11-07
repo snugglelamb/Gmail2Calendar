@@ -1,21 +1,10 @@
-# == Schema Information
-#
-# Table name: users
-#
-#  id         :integer          not null, primary key
-#  account    :string(255)
-#  psw        :string(255)
-#  json       :text
-#  name       :string(255)
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#
-
 class User < ActiveRecord::Base
-  attr_accessible :account, :json, :name, :psw
-  has_many :emails
-  validates :name, length: {minimum: 2}
-  validates :psw, :presence => true
-  validates :json, :presence => true
-  validates :account, :presence => true
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable
+
+  # Setup accessible (or protected) attributes for your model
+  attr_accessible :email, :password, :password_confirmation, :remember_me
+  attr_accessible :name
 end

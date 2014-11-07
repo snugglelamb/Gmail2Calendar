@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Gmail2Calendar::Application.load_tasks
+Test::Application.load_tasks

@@ -1,8 +1,7 @@
-Gmail2Calendar::Application.routes.draw do
-  resources :events
+Test::Application.routes.draw do
+  devise_for :users
 
-
-  resources :emails
+  resources :quotes
 
 
   resources :users
@@ -57,7 +56,7 @@ Gmail2Calendar::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
+  root :to => 'users#index'
 
   # See how all your routes lay out with "rake routes"
 
