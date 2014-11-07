@@ -19,6 +19,9 @@ group :test, :development do
   gem 'launchy'
 end
 
+gem 'gmail'
+gem 'google-api-client', '>= 0.6'
+gem 'sinatra', '>= 1.3'
 
 # Gems used only for assets and not required
 # in production environments by default.

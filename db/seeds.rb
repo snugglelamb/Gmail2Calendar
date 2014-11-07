@@ -5,3 +5,7 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+user = User.create(account: 'cit597project@gmail.com', psw:'cit597penn', name: 'swap', json: 'client_secrets.json')
+email = Email.create(eid: 0, user_id: user.id)
+event = Event.create(name: 'flight',email_id: email.id)
