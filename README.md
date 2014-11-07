@@ -17,3 +17,18 @@ Useful resources:<br>
        https://deepakrip007.wordpress.com/2013/09/22/authentication-using-devise-in-rails-3/
        https://github.com/plataformatec/devise
        https://github.com/plataformatec/devise/blob/master/lib/devise/controllers/helpers.rb
+
+Please Try it out :)<br>
+Li<br>
+_______
+Add bootstrap<br>
+       remember not to use --force unless you know what you're doing
+       accidently delete show button, add it back but without bootstrap layout
+Adjust layout<br>
+       move the sign in/out label to the bottom as footer
+       adjust display value and scroll bar back to normal
+              since bootstrap --force will overwrite former changes to layout
+
+Please Try it out :)<br>
+Li<br>
+_______
