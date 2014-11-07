@@ -14,5 +14,5 @@
 
 class Event < ActiveRecord::Base
   belongs_to :email
-  attr_accessible :label, :location, :name, :schedule, :email_id
+  attr_accessible :label, :location, :name, :schedule
 end
