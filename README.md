@@ -18,7 +18,7 @@ Useful resources:<br>
        https://github.com/plataformatec/devise
        https://github.com/plataformatec/devise/blob/master/lib/devise/controllers/helpers.rb
 
-____________
+<br><br><br>
 
 Add bootstrap<br>
        <ul>remember not to use --force unless you know what you're doing</ul>
