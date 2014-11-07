@@ -13,20 +13,20 @@ Add restriction:<br>
        User can do nothing but login when logged out
        
 Useful resources:<br>
-       http://guides.railsgirls.com/devise/
-       https://deepakrip007.wordpress.com/2013/09/22/authentication-using-devise-in-rails-3/
-       https://github.com/plataformatec/devise
-       https://github.com/plataformatec/devise/blob/master/lib/devise/controllers/helpers.rb
+       http://guides.railsgirls.com/devise/<br>
+       https://deepakrip007.wordpress.com/2013/09/22/authentication-using-devise-in-rails-3/<br>
+       https://github.com/plataformatec/devise<br>
+       https://github.com/plataformatec/devise/blob/master/lib/devise/controllers/helpers.rb<br>
 
 <br>
 
 Add bootstrap<br>
-       remember not to use --force unless you know what you're doing
-       accidently delete show button, add it back but without bootstrap layout
+       remember not to use --force unless you know what you're doing<br>
+       accidently delete show button, add it back but without bootstrap layout<br>
 Adjust layout<br>
-       move the sign in/out label to the bottom as footer
-       adjust display value and scroll bar back to normal
-              since bootstrap --force will overwrite former changes to layout
+       move the sign in/out label to the bottom as footer<br>
+       adjust display value and scroll bar back to normal<br>
+              since bootstrap --force will overwrite former changes to layout<br>
 <br>
 Please Try it out :)<br>
 Li<br>
