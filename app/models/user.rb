@@ -13,7 +13,8 @@
 
 class User < ActiveRecord::Base
   attr_accessible :account, :json, :name, :psw
-  has_many :emails
+  has_many :emails 
+  has_many :events ,through: :emails
   validates :name, length: {minimum: 2}
   validates :psw, :presence => true
   validates :json, :presence => true
