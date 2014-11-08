@@ -1,38 +1,33 @@
-<%= form_for @event, :html => { :class => 'form-horizontal' } do |f| %>
-  <div class="control-group">
-    <%= f.label :name, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :name, :class => 'text_field' %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :location, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :location, :class => 'text_field' %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :schedule, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.datetime_select :schedule, :class => 'datetime_select' %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :label, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :label, :class => 'text_field' %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :email_id, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.number_field :email_id, :class => 'number_field' %>
-    </div>
-  </div>
+<%= form_for(@event) do |f| %>
+  <% if @event.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
 
-  <div class="form-actions">
-    <%= f.submit nil, :class => 'btn btn-primary' %>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                events_path, :class => 'btn' %>
+      <ul>
+      <% @event.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :shedule %><br>
+    <%= f.datetime_select :shedule %>
+  </div>
+  <div class="field">
+    <%= f.label :location %><br>
+    <%= f.text_field :location %>
+  </div>
+  <div class="field">
+    <%= f.label :mygmail_id %><br>
+    <%= f.text_field :mygmail_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
   </div>
 <% end %>

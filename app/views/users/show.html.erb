@@ -4,19 +4,39 @@
 </div>
 
 <dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:account) %>:</strong></dt>
-  <dd><%= @user.account %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:psw) %>:</strong></dt>
-  <dd><%= @user.psw %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:json) %>:</strong></dt>
-  <dd><%= @user.json %></dd>
   <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
   <dd><%= @user.name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:psw) %>:</strong></dt>
+  <dd><%= @user.psw %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:account) %>:</strong></dt>
+  <dd><%= @user.account %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:email) %>:</strong></dt>
+  <dd><%= @user.email %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:encrypted_password) %>:</strong></dt>
+  <dd><%= @user.encrypted_password %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:reset_password_token) %>:</strong></dt>
+  <dd><%= @user.reset_password_token %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:reset_password_sent_at) %>:</strong></dt>
+  <dd><%= @user.reset_password_sent_at %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:remember_created_at) %>:</strong></dt>
+  <dd><%= @user.remember_created_at %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:current_sign_in_at) %>:</strong></dt>
+  <dd><%= @user.current_sign_in_at %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:last_sign_in_at) %>:</strong></dt>
+  <dd><%= @user.last_sign_in_at %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:current_sign_in_ip) %>:</strong></dt>
+  <dd><%= @user.current_sign_in_ip %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:last_sign_in_ip) %>:</strong></dt>
+  <dd><%= @user.last_sign_in_ip %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:provider) %>:</strong></dt>
+  <dd><%= @user.provider %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:uid) %>:</strong></dt>
+  <dd><%= @user.uid %></dd>
 </dl>
 
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),
-              users_path, :class => 'btn'  %>
+              root_path, :class => 'btn'  %>
   <%= link_to t('.edit', :default => t("helpers.links.edit")),
               edit_user_path(@user), :class => 'btn' %>
   <%= link_to t('.destroy', :default => t("helpers.links.destroy")),

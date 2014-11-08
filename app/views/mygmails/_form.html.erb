@@ -1,0 +1,21 @@
+<%= form_for(@mygmail) do |f| %>
+  <% if @mygmail.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@mygmail.errors.count, "error") %> prohibited this mygmail from being saved:</h2>
+
+      <ul>
+      <% @mygmail.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :eid %><br>
+    <%= f.text_field :eid %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
