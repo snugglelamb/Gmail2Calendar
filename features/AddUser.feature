@@ -1,27 +1,34 @@
-Feature: Sign In
-	In order to allow users to access private content
-	A validated user should be able to sign in
+Feature: Sign in
+  In order to get access to protected sections of the site
+  A user
+  Should be able to sign in
 
-Scenario: User Is Not a Signed Up Individual and Logs In
-	Given I am not a valid user
-	When I sign in
-	Then I should not be able to login succesfully
-	And I should not have access to the private content
+    Scenario: User is not signed up
+      Given I do not exist as a user
+      When I log in with valid credentials
+      Then I see an invalid login message
+      Then I should be signed out
+	  
 
-Scenario: User Signs In With Valid Credentials
-	Given I am a valid user
-	When I sign in 
-	Then I should be able to login successfully
-	And I should have access to the private content
+    Scenario: User signs in successfully
+      Given I exist as a user
+        And I am not logged in
+      When I sign in with valid credentials
+      Then I should visit my page
+      
 
-Scenario: User Signs in With Incorrect Password
-	Given I am a valid user
-	When I sign in with the incorrect password
-	Then I should see an error message
-	And I should not have access to the private content
+    Scenario: User enters wrong email
+      Given I exist as a user
+      And I am not logged in
+      When I sign in with a wrong email
+      Then I see an invalid login message
+      And I should be signed out
+      
+    Scenario: User enters wrong password
+      Given I exist as a user
+      And I am not logged in
+      When I sign in with a wrong password
+      Then I see an invalid login message
+      And I should be signed out
 
-Scenario: User Signs In With Invalid Email
-	Given I am a valid user
-	When I sign in with an invalid email
-	Then I should see an error message
-	And I should not have access to the private content
+      

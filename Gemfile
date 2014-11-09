@@ -24,6 +24,10 @@ group :test, :develpment do
   gem 'capybara' #framework 
   gem 'launchy'
 end
+group :development, :test do
+  gem 'factory_girl_rails'
+  gem 'rspec-rails'
+end
 gem 'sass-rails', '~> 5.0.0.beta1'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'

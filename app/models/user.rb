@@ -21,7 +21,8 @@
 #
 require 'omniauth'
 class User < ActiveRecord::Base
-  
+  #attr_accessible :name, :account, :psw  
+  #attr_accessible :email, :password, :password_confirmation
   has_many :mygmails
   has_many :events , :through => :mygmails
   def self.find_for_google_oauth2(access_token, signed_in_resource=nil)
@@ -49,6 +50,6 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable
 
-          
+     
          
 end
