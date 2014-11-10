@@ -9,50 +9,50 @@
 <h2>Models</h2>
 <ul>Three models are created by using scaffold: User, Mygmail and Event</ul>
 <ul>
-	The relational database looks like below
-	Users 1---has many----{ Mygmails 1-----has many------{ Events
-	1                          ^                          \ /
-	|                          |                           |
-	|                          |                           |
-  	-----------------has many through-----------------------
+	The relational database looks like below<\br>
+	Users 1---has many----{ Mygmails 1-----has many------{ Events<\br>
+	1                          ^                          \ /<\br>
+	|                          |                           |<\br>
+	|                          |                           |<\br>
+  	-----------------has many through-----------------------<\br>
 	
-	
-	# == Schema Information
+	<\br><\br><\br>
+	# == Schema Information<\br>
+	#<\br>
+	# Table name: users<\br>
+	#<\br>
+	#  id                     :integer          not null, primary key<\br>
+	#  name                   :string<\br>
+	#  psw                    :string<\br>
+	#  account                :string<\br>
+	#  created_at             :datetime         not null<\br>
+	#  updated_at             :datetime         not null<\br>
+	#  email                  :string           default(""), not null<\br>
+	#  encrypted_password     :string           default(""), not null<\br>
+	#  reset_password_token   :string<\br>
+	#  reset_password_sent_at :datetime<\br>
+	#  remember_created_at    :datetime<\br>
+	#  sign_in_count          :integer          default("0"), not null<\br>
+	#  current_sign_in_at     :datetime<\br>
+	#  last_sign_in_at        :datetime<\br>
+	#  current_sign_in_ip     :string<\br>
+	#  last_sign_in_ip        :string<\br>
 	#
-	# Table name: users
-	#
-	#  id                     :integer          not null, primary key
-	#  name                   :string
-	#  psw                    :string
-	#  account                :string
-	#  created_at             :datetime         not null
-	#  updated_at             :datetime         not null
-	#  email                  :string           default(""), not null
-	#  encrypted_password     :string           default(""), not null
-	#  reset_password_token   :string
-	#  reset_password_sent_at :datetime
-	#  remember_created_at    :datetime
-	#  sign_in_count          :integer          default("0"), not null
-	#  current_sign_in_at     :datetime
-	#  last_sign_in_at        :datetime
-	#  current_sign_in_ip     :string
-	#  last_sign_in_ip        :string
-	#
-	# Table name: mygmails
-	#
-	#  id         :integer          not null, primary key
-	#  eid        :string
-	#  created_at :datetime         not null
-	#  updated_at :datetime         not null
-	#
-	# Table name: events
-	#
-	#  id         :integer          not null, primary key
-	#  name       :string
-	#  shedule    :datetime
-	#  location   :string                                                              
-	#  mygmail_id :integer
-	#  created_at :datetime         not null
-	#  updated_at :datetime         not null
+	# Table name: mygmails<\br>
+	#<\br>
+	#  id         :integer          not null, primary key<\br>
+	#  eid        :string<\br>
+	#  created_at :datetime         not null<\br>
+	#  updated_at :datetime         not null<\br>
+	#<\br>
+	# Table name: events<\br>
+	#<\br>
+	#  id         :integer          not null, primary key<\br>
+	#  name       :string<\br>
+	#  shedule    :datetime<\br>
+	#  location   :string                                                              <\br>
+	#  mygmail_id :integer<\br>
+	#  created_at :datetime         not null<\br>
+	#  updated_at :datetime         not null<\br>
 </ul>
 
