@@ -24,6 +24,7 @@
         <td><%= event.mygmail_id %></td>
         <td><%=l event.created_at %></td>
         <td>
+  		  <%= link_to 'Show', event, :class => 'btn btn-mini'%>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_event_path(event), :class => 'btn btn-mini' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
