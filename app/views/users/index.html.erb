@@ -6,11 +6,21 @@
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:account) %></th>
-      <th><%= model_class.human_attribute_name(:psw) %></th>
-      <th><%= model_class.human_attribute_name(:json) %></th>
       <th><%= model_class.human_attribute_name(:name) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <!-- <th><%= model_class.human_attribute_name(:psw) %></th> -->
+      <!-- <th><%= model_class.human_attribute_name(:account) %></th> -->
+      <th><%= model_class.human_attribute_name(:email) %></th>
+      <!-- <th><%= model_class.human_attribute_name(:encrypted_password) %></th>
+      <th><%= model_class.human_attribute_name(:reset_password_token) %></th>
+      <th><%= model_class.human_attribute_name(:reset_password_sent_at) %></th>
+      <th><%= model_class.human_attribute_name(:remember_created_at) %></th>
+      <th><%= model_class.human_attribute_name(:current_sign_in_at) %></th> -->
+      <th><%= model_class.human_attribute_name(:last_sign_in_at) %></th>
+      <th><%= model_class.human_attribute_name(:current_sign_in_ip) %></th>
+      <!-- <th><%= model_class.human_attribute_name(:last_sign_in_ip) %></th> -->
+      <!-- <th><%= model_class.human_attribute_name(:provider) %></th> -->
+      <th><%= model_class.human_attribute_name(:uid) %></th>
+      <!-- <th><%= model_class.human_attribute_name(:created_at) %></th> -->
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
@@ -18,25 +28,36 @@
     <% @users.each do |user| %>
       <tr>
         <td><%= link_to user.id, user_path(user) %></td>
-        <td><%= user.account %></td>
-        <td><%= user.psw %></td>
-        <td><%= user.json %></td>
         <td><%= user.name %></td>
-        <td><%=l user.created_at %></td>
+        <!-- <td><%= user.psw %></td>
+        <td><%= user.account %></td> -->
+        <td><%= user.email %></td>
+        <!-- <td><%= user.encrypted_password %></td>
+        <td><%= user.reset_password_token %></td>
+        <td><%= user.reset_password_sent_at %></td> -->
+        <!-- <td><%= user.remember_created_at %></td> -->
+        <!-- <td><%= user.current_sign_in_at %></td> -->
+        <td><%= user.last_sign_in_at %></td>
+        <td><%= user.current_sign_in_ip %></td>
+        <!-- <td><%= user.last_sign_in_ip %></td>
+        <td><%= user.provider %></td> -->
+        <td><%= user.uid %></td>
+        <!-- <td><%=l user.created_at %></td> -->
         <td>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_user_path(user), :class => 'btn btn-mini' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+			<%= link_to 'Show', user %>
+          <!-- <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_user_path(user), :class => 'btn btn-mini' %> -->
+          <!-- <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
                       user_path(user),
                       :method => :delete,
                       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                      :class => 'btn btn-mini btn-danger' %>
+                      :class => 'btn btn-mini btn-danger' %> -->
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<%= link_to t('.new', :default => t("helpers.links.new")),
+<!-- <%= link_to t('.new', :default => t("helpers.links.new")),
             new_user_path,
-            :class => 'btn btn-primary' %>
+            :class => 'btn btn-primary' %> -->
