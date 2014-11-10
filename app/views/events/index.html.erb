@@ -7,10 +7,9 @@
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:name) %></th>
+      <th><%= model_class.human_attribute_name(:shedule) %></th>
       <th><%= model_class.human_attribute_name(:location) %></th>
-      <th><%= model_class.human_attribute_name(:schedule) %></th>
-      <th><%= model_class.human_attribute_name(:label) %></th>
-      <th><%= model_class.human_attribute_name(:email_id) %></th>
+      <th><%= model_class.human_attribute_name(:mygmail_id) %></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
@@ -20,10 +19,9 @@
       <tr>
         <td><%= link_to event.id, event_path(event) %></td>
         <td><%= event.name %></td>
+        <td><%= event.shedule %></td>
         <td><%= event.location %></td>
-        <td><%= event.schedule %></td>
-        <td><%= event.label %></td>
-        <td><%= event.email_id %></td>
+        <td><%= event.mygmail_id %></td>
         <td><%=l event.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),

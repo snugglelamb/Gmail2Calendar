@@ -1,0 +1,6 @@
+en:
+  devise:
+    failure:
+      invalid: "Invalid email or password."
+	  not_found_in_database: "Invalid %{authentication_keys} or password."
+      

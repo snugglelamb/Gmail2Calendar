@@ -6,27 +6,23 @@
     </div>
   </div>
   <div class="control-group">
+    <%= f.label :shedule, :class => 'control-label' %>
+    <div class="controls">
+      <!-- <%= f.text_field :shedule, :class => 'text_field' %> -->
+	  <%= f.datetime_select :shedule %>
+    </div>
+  </div>
+  <div class="control-group">
     <%= f.label :location, :class => 'control-label' %>
     <div class="controls">
       <%= f.text_field :location, :class => 'text_field' %>
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :schedule, :class => 'control-label' %>
+    <%= f.label :mygmail_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.datetime_select :schedule, :class => 'datetime_select' %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :label, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :label, :class => 'text_field' %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :email_id, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.number_field :email_id, :class => 'number_field' %>
+	  <%= collection_select :events, :mygmail_id, Mygmail.all, :id, :eid%>
+      <!-- <%= f.text_field :mygmail_id, :class => 'text_field' %> -->
     </div>
   </div>
 

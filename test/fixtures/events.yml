@@ -3,27 +3,24 @@
 # Table name: events
 #
 #  id         :integer          not null, primary key
-#  name       :string(255)
-#  location   :string(255)
-#  schedule   :datetime
-#  label      :string(255)
-#  email_id   :integer
+#  name       :string
+#  shedule    :datetime
+#  location   :string
+#  mygmail_id :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
   name: MyString
+  shedule: 2014-11-07 18:36:39
   location: MyString
-  schedule: 2014-11-06 19:57:00
-  label: MyString
-  email: 
+  mygmail_id: 
 
 two:
   name: MyString
+  shedule: 2014-11-07 18:36:39
   location: MyString
-  schedule: 2014-11-06 19:57:00
-  label: MyString
-  email: 
+  mygmail_id: 

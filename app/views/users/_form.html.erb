@@ -1,8 +1,8 @@
 <%= form_for @user, :html => { :class => 'form-horizontal' } do |f| %>
   <div class="control-group">
-    <%= f.label :account, :class => 'control-label' %>
+    <%= f.label :name, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :account, :class => 'text_field' %>
+      <%= f.text_field :name, :class => 'text_field' %>
     </div>
   </div>
   <div class="control-group">
@@ -12,15 +12,75 @@
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :json, :class => 'control-label' %>
+    <%= f.label :account, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_area :json, :class => 'text_area' %>
+      <%= f.text_field :account, :class => 'text_field' %>
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :name, :class => 'control-label' %>
+    <%= f.label :email, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :name, :class => 'text_field' %>
+      <%= f.text_field :email, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :encrypted_password, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :encrypted_password, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :reset_password_token, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :reset_password_token, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :reset_password_sent_at, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :reset_password_sent_at, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :remember_created_at, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :remember_created_at, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :current_sign_in_at, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :current_sign_in_at, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :last_sign_in_at, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :last_sign_in_at, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :current_sign_in_ip, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :current_sign_in_ip, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :last_sign_in_ip, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :last_sign_in_ip, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :provider, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :provider, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :uid, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :uid, :class => 'text_field' %>
     </div>
   </div>
 
