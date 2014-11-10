@@ -10,6 +10,8 @@
 <ul>Three models are created by using scaffold: User, Mygmail and Event</ul>
 <ul>
 	The relational database looks like below<\br>
+	
+	
 	Users 1---has many----{ Mygmails 1-----has many------{ Events<\br>
 	1                          ^                          \ /<\br>
 	|                          |                           |<\br>
