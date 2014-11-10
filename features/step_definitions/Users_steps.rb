@@ -51,7 +51,7 @@ When(/^I sign in with valid credentials$/) do
 end
 
 Then(/^I should visit my page$/) do
-  page.should have_content "#{@user[:name]}"
+  page.should have_content "#{@user[:email]}"
 end
 
 When(/^I sign in with a wrong email$/) do
@@ -63,3 +63,65 @@ When(/^I sign in with a wrong password$/) do
   @visitor = @visitor.merge(:email => "wrongpassword")
   log_in
 end
+
+When(/^I sign up with valid user data$/) do
+  create_visitor
+  delete_user
+  visit '/users/sign_up'
+  fill_in 'Email', :with =>@visitor[:email] 
+  fill_in 'Password', :with=>@visitor[:password]
+  fill_in 'Password confirmation', :with=>@visitor[:password]
+  click_button 'Sign up'
+  create_user
+end
+
+
+When(/^I sign up with an invalid email$/) do
+  create_visitor
+  delete_user
+  visit '/users/sign_up'
+  fill_in 'Email', :with =>'wrong'
+  fill_in 'Password', :with=>@visitor[:password]
+  fill_in 'Password confirmation', :with=>@visitor[:password]
+  click_button 'Sign up'
+end
+
+Then(/^I should see an invalid email message$/) do
+  page.should have_content 'Email is invalid'
+end
+
+When(/^I sign up without a password$/) do
+  create_visitor
+  delete_user
+  visit '/users/sign_up'
+  fill_in 'Email', :with =>@visitor[:email]
+  click_button 'Sign up'
+end
+
+Then(/^I should see a missing password message$/) do
+  page.should have_content 'Password can\'t be blank'
+end
+
+When(/^I sign up without a password confirmation$/) do
+  create_visitor
+  delete_user
+  visit '/users/sign_up'
+  fill_in 'Email', :with =>@visitor[:email]
+  fill_in 'Password', :with=>@visitor[:password]
+  click_button 'Sign up'
+end
+
+Then(/^I should see a wrong password confirmation message$/) do
+ page.should have_content 'Password confirmation doesn\'t match Password'
+end
+
+When(/^I sign up with a mismatched password confirmation$/) do
+  create_visitor
+  delete_user
+  visit '/users/sign_up'
+  fill_in 'Email', :with =>@visitor[:email]
+  fill_in 'Password', :with=>@visitor[:password]
+  fill_in 'Password confirmation', :with=>'wrong'
+  click_button 'Sign up'
+end
+
