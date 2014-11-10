@@ -13,4 +13,5 @@
 
 class Event < ActiveRecord::Base
   belongs_to :mygmail
+  # attr_accessible :mygmail_id
 end
