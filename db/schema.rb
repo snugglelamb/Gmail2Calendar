@@ -11,11 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141107235638) do
+ActiveRecord::Schema.define(version: 20141111171634) do
 
   create_table "events", force: true do |t|
     t.string   "name"
-    t.datetime "shedule"
+    t.datetime "schedule"
     t.string   "location"
     t.integer  "mygmail_id"
     t.datetime "created_at", null: false

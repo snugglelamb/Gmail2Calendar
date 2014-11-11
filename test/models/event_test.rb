@@ -4,7 +4,7 @@
 #
 #  id         :integer          not null, primary key
 #  name       :string
-#  shedule    :datetime
+#  schedule   :datetime
 #  location   :string
 #  mygmail_id :integer
 #  created_at :datetime         not null
