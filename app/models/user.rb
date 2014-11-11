@@ -18,7 +18,10 @@
 #  last_sign_in_at        :datetime
 #  current_sign_in_ip     :string
 #  last_sign_in_ip        :string
+#  provider               :string
+#  uid                    :string
 #
+
 require 'omniauth'
 class User < ActiveRecord::Base
   #attr_accessible :name, :account, :psw  
