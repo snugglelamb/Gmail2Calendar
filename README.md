@@ -1,12 +1,12 @@
-<h1>Gmail2Calendar</h1> 
-<h2>Authentication</h2>
+#Gmail2Calendar
+##Authentication
 <ul>Integrated with devise + omniauth to get access to user's google account. However, users need to register for a project first and provide the API ID and secret.</ul>
-<h2>User story and testing</h2>
+##User story and testing
 <ul>Integrated with cucumber + capybara + factory girl + rspec for testing</ul>
 <ul> As in our application, users only need to sign up/in or cancel their account. We write the user story in the two scopes.</ul>
-<h2>UI</h2>
+##UI
 <ul>UI is based on bootstrap plus some customized modification</ul>
-<h2>Models</h2>
+##Models
 <ul>Three models are created by using scaffold: User, Mygmail and Event</ul>
 <ul>
 	The relational database looks like below
@@ -15,9 +15,9 @@
 	User 1 has many Events through Mygmail.
 	
 	
-<h2>Schema Information</h2>
-<h3>Table name: users</h3>
-	
+##Schema Information
+###Table name: users
+```ruby
 	  id                     :integer          not null, primary key
 	  name                   :string
 	  psw                    :string
@@ -34,18 +34,19 @@
 	  last_sign_in_at        :datetime
 	  current_sign_in_ip     :string
 	  last_sign_in_ip        :string
-	  
+```
 
-<h3>Table name: mygmails</h3>
-	
+###Table name: mygmails
+```ruby	
 	  id         :integer          not null, primary key
 	  eid        :string
 	  created_at :datetime         not null
 	  updated_at :datetime         not null
+```	
 	
+###Table name: events
 	
-<h3>Table name: events</h3>
-	
+```ruby
 	  id         :integer          not null, primary key
 	  name       :string
 	  shedule    :datetime
@@ -53,5 +54,14 @@
 	  mygmail_id :integer
 	  created_at :datetime         not null
 	  updated_at :datetime         not null
+```
+###Relevant Links
+[Using Devise on rails app](http://guides.railsgirls.com/devise/)
+
+[Authentication using devise](https://deepakrip007.wordpress.com/2013/09/22/authentication-using-devise-in-rails-3/)
+
+[devise documentation](https://github.com/plataformatec/devise)
+
+[Using devise helpers](https://github.com/plataformatec/devise/blob/master/lib/devise/controllers/helpers.rb)
 
 
