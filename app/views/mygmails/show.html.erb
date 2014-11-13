@@ -10,7 +10,7 @@
 
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),
-              user_mygmails_path(@user,@mygmail), :class => 'btn'  %>
+              user_mygmails_path(@user), :class => 'btn'  %>
   <%= link_to t('.edit', :default => t("helpers.links.edit")),
               edit_user_mygmail_path(@user,@mygmail), :class => 'btn' %>
   <%= link_to t('.destroy', :default => t("helpers.links.destroy")),

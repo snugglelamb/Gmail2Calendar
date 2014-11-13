@@ -13,7 +13,7 @@
   </thead>
   <tbody>
 	<%unless @mygmail.nil?%>
-	    <% @mygmails.each do |mygmail| %>
+	    <% @mygmail.each do |mygmail| %>
 		<%next if mygmail.id.nil?%>
 	      <tr>
 	        <td><%= link_to mygmail.id, user_mygmail_path(@user,mygmail) %></td>
