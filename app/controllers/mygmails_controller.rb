@@ -1,44 +1,66 @@
 class MygmailsController < ApplicationController
-  before_action :set_mygmail, only: [:show, :edit, :update, :destroy]
+  attr_accessor :user
+  before_action :set_mygmail_user, only: [:show, :edit, :update, :destroy]
 
   respond_to :html
-
+  
   def index
-    @mygmails = Mygmail.all
-    respond_with(@mygmails)
+    # if (params[:user_id]) then
+#       @mygmail = Mygmail.where('user_id = ?',params[:user_id])
+#     else
+#       #@mygmails = Mygmail.all
+#     end
+    @user = User.find(params[:user_id])
+    @mygmails = @user.mygmails.all
+    respond_with(@user, @mygmail)
   end
 
   def show
-    respond_with(@mygmail)
+    @user = User.find(params[:user_id])
+    @mygmail = @user.mygmails.find(params[:id])
+    respond_with(@user, @mygmail)
   end
 
   def new
-    @mygmail = Mygmail.new
-    respond_with(@mygmail)
+    @user = User.find(params[:user_id])
+    @mygmail = @user.mygmails.build
+    
+    respond_with(@user, @mygmail)
   end
 
   def edit
   end
 
   def create
-    @mygmail = Mygmail.new(mygmail_params)
-    @mygmail.save
-    respond_with(@mygmail)
+    @user = User.find(params[:user_id])
+    @mygmail = @user.mygmails.create(mygmail_params)
+    #Mygmail.new(mygmail_params)
+    if @mygmail.save
+      respond_with(@user,@mygmail)
+    else
+      
+    end
   end
 
   def update
+    @user = User.find(params[:user_id])
+    @mygmail = @user.mygmails.find(params[:id])
     @mygmail.update(mygmail_params)
-    respond_with(@mygmail)
+    respond_with(@user, @mygmail)
   end
 
   def destroy
+    # @user = User.find(params[:user_id])
+#     @mygmail = @user.mygmails.find(params[:id])
     @mygmail.destroy
-    respond_with(@mygmail)
+    respond_with(@user, @mygmail)
   end
 
   private
-    def set_mygmail
-      @mygmail = Mygmail.find(params[:id])
+    def set_mygmail_user
+      @user = User.find(params[:user_id])
+      @mygmail = @user.mygmails.find(params[:id])
+      #@mygmail = Mygmail.find(params[:id])
     end
 
     def mygmail_params

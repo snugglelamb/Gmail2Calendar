@@ -1,16 +1,66 @@
+# == Route Map
+#
+#                   Prefix Verb     URI Pattern                                 Controller#Action
+#                     root GET      /                                           users#index
+#         new_user_session GET      /users/sign_in(.:format)                    devise/sessions#new
+#             user_session POST     /users/sign_in(.:format)                    devise/sessions#create
+#     destroy_user_session DELETE   /users/sign_out(.:format)                   devise/sessions#destroy
+#  user_omniauth_authorize GET|POST /users/auth/:provider(.:format)             omniauth_callbacks#passthru {:provider=>/google_oauth2/}
+#   user_omniauth_callback GET|POST /users/auth/:action/callback(.:format)      omniauth_callbacks#:action
+#            user_password POST     /users/password(.:format)                   devise/passwords#create
+#        new_user_password GET      /users/password/new(.:format)               devise/passwords#new
+#       edit_user_password GET      /users/password/edit(.:format)              devise/passwords#edit
+#                          PATCH    /users/password(.:format)                   devise/passwords#update
+#                          PUT      /users/password(.:format)                   devise/passwords#update
+# cancel_user_registration GET      /users/cancel(.:format)                     devise/registrations#cancel
+#        user_registration POST     /users(.:format)                            devise/registrations#create
+#    new_user_registration GET      /users/sign_up(.:format)                    devise/registrations#new
+#   edit_user_registration GET      /users/edit(.:format)                       devise/registrations#edit
+#                          PATCH    /users(.:format)                            devise/registrations#update
+#                          PUT      /users(.:format)                            devise/registrations#update
+#                          DELETE   /users(.:format)                            devise/registrations#destroy
+#                   events GET      /events(.:format)                           events#index
+#                          POST     /events(.:format)                           events#create
+#                new_event GET      /events/new(.:format)                       events#new
+#               edit_event GET      /events/:id/edit(.:format)                  events#edit
+#                    event GET      /events/:id(.:format)                       events#show
+#                          PATCH    /events/:id(.:format)                       events#update
+#                          PUT      /events/:id(.:format)                       events#update
+#                          DELETE   /events/:id(.:format)                       events#destroy
+#            user_mygmails GET      /users/:user_id/mygmails(.:format)          mygmails#index
+#                          POST     /users/:user_id/mygmails(.:format)          mygmails#create
+#         new_user_mygmail GET      /users/:user_id/mygmails/new(.:format)      mygmails#new
+#        edit_user_mygmail GET      /users/:user_id/mygmails/:id/edit(.:format) mygmails#edit
+#             user_mygmail GET      /users/:user_id/mygmails/:id(.:format)      mygmails#show
+#                          PATCH    /users/:user_id/mygmails/:id(.:format)      mygmails#update
+#                          PUT      /users/:user_id/mygmails/:id(.:format)      mygmails#update
+#                          DELETE   /users/:user_id/mygmails/:id(.:format)      mygmails#destroy
+#                    users GET      /users(.:format)                            users#index
+#                          POST     /users(.:format)                            users#create
+#                 new_user GET      /users/new(.:format)                        users#new
+#                edit_user GET      /users/:id/edit(.:format)                   users#edit
+#                     user GET      /users/:id(.:format)                        users#show
+#                          PATCH    /users/:id(.:format)                        users#update
+#                          PUT      /users/:id(.:format)                        users#update
+#                          DELETE   /users/:id(.:format)                        users#destroy
+#
+
 require 'omniauth'
 require 'omniauth-google-oauth2'
 Rails.application.routes.draw do
-  devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
-  resources :events
-
-  resources :mygmails
-
- 
-  resources :users
-   
   
+
   root :to => 'users#index'
+  devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
+  #resources :mygmails
+  resources :events
+  
+  #shallow do
+    resources :users do
+      resources :mygmails
+      end
+   # end
+ 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

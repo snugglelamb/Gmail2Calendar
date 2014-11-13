@@ -1,4 +1,4 @@
-<%= form_for @mygmail, :html => { :class => 'form-horizontal' } do |f| %>
+<%= form_for [@user, @mygmail], :html => { :class => 'form-horizontal' } do |f| %>
   <div class="control-group">
     <%= f.label :eid, :class => 'control-label' %>
     <div class="controls">
@@ -9,6 +9,6 @@
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                mygmails_path, :class => 'btn' %>
+                user_mygmails_path(@user), :class => 'btn' %>
   </div>
 <% end %>
