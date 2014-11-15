@@ -8,7 +8,9 @@ gem 'rails', '4.2.0.beta4'
 gem 'sqlite3'
 # Use SCSS for stylesheets
 
-
+gem 'gmail'
+gem 'google-api-client', '>= 0.6'
+gem 'sinatra', '>= 1.3'
 
 gem 'twitter-bootstrap-rails'
 gem 'less-rails'

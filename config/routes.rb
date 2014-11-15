@@ -1,6 +1,14 @@
 # == Route Map
 #
 #                   Prefix Verb     URI Pattern                                 Controller#Action
+#                 mygmails GET      /mygmails(.:format)                         mygmails#index
+#                          POST     /mygmails(.:format)                         mygmails#create
+#              new_mygmail GET      /mygmails/new(.:format)                     mygmails#new
+#             edit_mygmail GET      /mygmails/:id/edit(.:format)                mygmails#edit
+#                  mygmail GET      /mygmails/:id(.:format)                     mygmails#show
+#                          PATCH    /mygmails/:id(.:format)                     mygmails#update
+#                          PUT      /mygmails/:id(.:format)                     mygmails#update
+#                          DELETE   /mygmails/:id(.:format)                     mygmails#destroy
 #                     root GET      /                                           users#index
 #         new_user_session GET      /users/sign_in(.:format)                    devise/sessions#new
 #             user_session POST     /users/sign_in(.:format)                    devise/sessions#create
@@ -35,6 +43,7 @@
 #                          PATCH    /users/:user_id/mygmails/:id(.:format)      mygmails#update
 #                          PUT      /users/:user_id/mygmails/:id(.:format)      mygmails#update
 #                          DELETE   /users/:user_id/mygmails/:id(.:format)      mygmails#destroy
+#           user_getgmails GET      /users/:user_id/getgmails(.:format)         mygmails#getGmails
 #                    users GET      /users(.:format)                            users#index
 #                          POST     /users(.:format)                            users#create
 #                 new_user GET      /users/new(.:format)                        users#new
@@ -50,6 +59,8 @@ require 'omniauth-google-oauth2'
 Rails.application.routes.draw do
   
 
+  resources :mygmails
+
   root :to => 'users#index'
   devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
   #resources :mygmails
@@ -58,9 +69,10 @@ Rails.application.routes.draw do
   #shallow do
     resources :users do
       resources :mygmails
+      get 'getgmails' => 'mygmails#getGmails'
       end
    # end
- 
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
