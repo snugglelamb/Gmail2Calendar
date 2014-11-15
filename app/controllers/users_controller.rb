@@ -1,8 +1,13 @@
+
+
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   
   respond_to :html
 
+  
+  
+  
   def index
     @users = User.all
     respond_with(@users)
@@ -42,6 +47,6 @@ class UsersController < ApplicationController
     end
 
     def user_params
-      params.require(:user).permit(:name, :psw, :account)
+      params.require(:user).permit(:name, :psw, :email)
     end
 end

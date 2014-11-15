@@ -1,8 +1,27 @@
+require 'gmail'
+require 'date'
 class MygmailsController < ApplicationController
 
   before_action :set_user #, only: [:show, :edit, :update, :destroy, :]
 
   respond_to :html
+  
+  def getGmails 
+    
+    start = DateTime.parse(params[:q])
+    Gmail.connect(@user.email, @user.psw) do |gmail|
+      break unless gmail.logged_in?
+      gmail.inbox.emails(:after => start ).each do |email|
+        if Mygmail.where(:eid => email.uid, :user_id =>@user.id).empty?
+          text = email.text_part.body.to_s 
+          @mygmail =  @user.mygmails.create(:eid => email.uid, :user_id => @user.id, :content =>text)
+          @mygmail.save
+        end
+      end
+    end
+    @mygmail = @user.mygmails.all
+    render :template => "mygmails/index"
+  end
   
   def index
    

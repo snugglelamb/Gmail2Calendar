@@ -1,4 +1,7 @@
-FactoryGirl.define do  factory :event do
+FactoryGirl.define do  factory :mygmail do
+    content "MyText"
+  end
+  factory :event do
     name "MyString"
 schedule "2014-11-12 18:08:18"
 location "MyString"
