@@ -20,6 +20,7 @@
 #  last_sign_in_ip        :string
 #  provider               :string
 #  uid                    :string
+#  token                  :string
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

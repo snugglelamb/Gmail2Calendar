@@ -20,6 +20,7 @@
 #  last_sign_in_ip        :string
 #  provider               :string
 #  uid                    :string
+#  token                  :string
 #
 
 require 'omniauth'
@@ -33,16 +34,20 @@ class User < ActiveRecord::Base
       data = access_token.info
       user = User.where(:provider => access_token.provider, :uid => access_token.uid ).first
       if user
+        user.token = access_token["credentials"]["token"]
         return user
       else
         registered_user = User.where(:email => access_token.info.email).first
         if registered_user
+          registered_user.token = access_token["credentials"]["token"]
           return registered_user
         else
-          user = User.create(name: data["name"],
+          user = User.create(
+            name: data["name"],
             provider:access_token.provider,
             email: data["email"],
-            uid: access_token.uid ,
+            uid: access_token.uid,
+            token: access_token["credentials"]["token"],
             password: Devise.friendly_token[0,20],
           )
         end
