@@ -1,12 +1,12 @@
 require 'gmail'
 require 'date'
+require 'google/api_client'
 require_relative 'events_controller'
 class MygmailsController < ApplicationController
 
-  before_action :set_user #, only: [:show, :edit, :update, :destroy, :]
+  before_action :set_user , except: [:addevent ]
 
   respond_to :html
-  
   def getGmails 
     
     start = DateTime.parse(params[:q])
@@ -24,8 +24,31 @@ class MygmailsController < ApplicationController
         end
       end
     end
+    addevent
     @mygmail = @user.mygmails.all
     render :template => "mygmails/index"
+  end
+  
+  def addevent
+    @mygmail = @user.mygmails.all
+    client = Google::APIClient.new
+    client.authorization.access_token = @user.token
+    service = client.discovered_api('calendar', 'v3')
+    @mygmail.each do |g|
+      g.events.all.each do |e|
+        _tocal = {
+        'summary' => e.name,
+        'location' => e.location,
+        'start' => e.schedule}
+        
+        @set_event = client.execute(
+                                :api_method => service.events.insert,
+                                :parameters => {'calendarId' => @user.email, 'sendNotifications' => true},
+                                :body => JSON.dump(_tocal),
+                                :headers => {'Content-Type' => 'application/json'})
+                            
+      end
+    end
   end
   
   def parsetime text
