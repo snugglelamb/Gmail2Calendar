@@ -17,11 +17,15 @@ class MygmailsController < ApplicationController
         if Mygmail.where(:eid => email.uid, :user_id =>@user.id).empty?
           flag = true
           event_name = email.subject
-          text = email.text_part.body.to_s 
+          if email.text_part.nil?
+            text = email.body.to_s
+          else
+            text = email.text_part.body.to_s 
+          end
           event_schedule = parsetime text
           @mygmail =  @user.mygmails.create(:eid => email.uid, :user_id => @user.id, :content =>text)
           @mygmail.save
-          @event = @mygmail.events.create(:mygmail_id => @mygmail.id, :schedule => event_schedule, :name=> event_name)
+          @event = @mygmail.events.create(:mygmail_id => @mygmail.id, :schedule => event_schedule, :name=> event_name) unless event_schedule.nil? 
           @event.save
         end
         addevent if flag 
@@ -70,8 +74,14 @@ class MygmailsController < ApplicationController
           return date
         end
         #2014/11/20
-        if m = /\d{2,4}\/\d{1,2}\/\d{1,2}/.match(l)
+        if m = /\d{4}\/\d{1,2}\/\d{1,2}/.match(l)
           date = DateTime.parse(m[0])
+          return date
+        end
+        
+        #/11/20/2014
+        if m = /\d{1,2}\/\d{1,2}\/\d{4}/.match(l)
+          date = DateTime.strptime(m[0],'%m/%d/%Y')
           return date
         end
         
