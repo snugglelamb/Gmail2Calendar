@@ -65,3 +65,12 @@
 [Using devise helpers](https://github.com/plataformatec/devise/blob/master/lib/devise/controllers/helpers.rb)
 
 
+======
+#Iteration 2
+
+## Extract Gmail from mailbox and store in database
+
+## Filter mail and store as event
+
+## Add event to calendar
+
