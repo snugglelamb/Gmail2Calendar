@@ -13,7 +13,9 @@ class MygmailsController < ApplicationController
     Gmail.connect(@user.email, @user.psw) do |gmail|
       break unless gmail.logged_in?
       gmail.inbox.emails(:after => start ).each do |email|
+        flag = false
         if Mygmail.where(:eid => email.uid, :user_id =>@user.id).empty?
+          flag = true
           event_name = email.subject
           text = email.text_part.body.to_s 
           event_schedule = parsetime text
@@ -22,9 +24,10 @@ class MygmailsController < ApplicationController
           @event = @mygmail.events.create(:mygmail_id => @mygmail.id, :schedule => event_schedule, :name=> event_name)
           @event.save
         end
+        addevent if flag 
       end
     end
-    addevent
+    
     @mygmail = @user.mygmails.all
     render :template => "mygmails/index"
   end
@@ -37,16 +40,24 @@ class MygmailsController < ApplicationController
     @mygmail.each do |g|
       g.events.all.each do |e|
         _tocal = {
-        'summary' => e.name,
-        'location' => e.location,
-        'start' => e.schedule}
+          'summary' => e.name,
+            'description' => e.name,
+            'location' => e.location,
+            'start' => {
+                'dateTime' => e.schedule.to_datetime.rfc3339},
+            'end' => {
+                'dateTime' => ((e.schedule.to_datetime + 2.0/24).rfc3339)},
+            'attendees' => { "email" => @user.email }
+        
+       
+      }
         
         @set_event = client.execute(
                                 :api_method => service.events.insert,
                                 :parameters => {'calendarId' => @user.email, 'sendNotifications' => true},
                                 :body => JSON.dump(_tocal),
                                 :headers => {'Content-Type' => 'application/json'})
-                            
+                        
       end
     end
   end
