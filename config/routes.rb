@@ -68,6 +68,8 @@ Rails.application.routes.draw do
   
   #shallow do
     resources :users do
+      get 'calendar' => 'users#calendar'
+     
       resources :mygmails
       get 'getgmails' => 'mygmails#getGmails'
       end
