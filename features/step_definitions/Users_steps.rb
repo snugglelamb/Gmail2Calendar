@@ -1,6 +1,6 @@
 def create_visitor
-  @visitor ||= { :name => "Testy McUserton", :email => "example@example.com",
-      :password => "changeme"}
+  @visitor ||= { :name => "Testy McUserton", :email => "cit597project@gmail.com",
+      :password => "cit597penn"}
 end
 
 def delete_user
@@ -125,4 +125,63 @@ When(/^I sign up with a mismatched password confirmation$/) do
   fill_in 'Password', :with=>@visitor[:password]
   fill_in 'Password confirmation', :with=>'wrong'
   click_button 'Sign up'
+end
+
+Given(/^I am signed in with provider "google_oauth2"$/) do 
+  visit '/users/auth/google_oauth2'
+end
+
+Given(/^I am logged in with google account and I am in user page$/) do
+  create_user
+  visit '/users'
+end
+
+When(/^I choose the starting date so as to get my gmails$/) do
+  fill_in 'Please choose date:', :with=>'2014-11-22'
+  click_button 'Get my Gmails'
+end
+
+Given(/^I have not filled in my password$/) do
+  @user.psw = "" unless @user.psw.nil? || @user.psw.empty?
+end
+
+Then(/^I should be redirect to edit page$/) do
+   page.should have_content 'Please type in your gmail password'
+end
+
+Then(/^I type in the password$/) do
+  fill_in 'Please type in your gmail password', :with=> @user.password
+end
+
+Then(/^I confirm update$/) do
+  click_button 'Update User'
+end
+
+Then(/^I should see my newly updated infomation$/) do
+  page.should have _content @user.psw
+end
+
+Given(/^I have filled in my password$/) do
+  @user.psw = @user.password
+end
+
+Then(/^I should see all my gmails form that day on$/) do
+  page.should have_content 'Mygmails' 
+end
+
+When(/^I visit my events$/) do
+  click_button 'Event'
+end
+
+Then(/^I should see all events this app parsed from my gmails$/) do
+  page.should have_content 'Listing Events'
+end
+
+When(/^I visit my calendar$/) do
+  click_button 'Calendar'
+end
+
+Then(/^I should see my own calendar$/) do
+  name = @user.email.gsub('@','%40')
+  page.should have_content name
 end
