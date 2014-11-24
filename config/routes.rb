@@ -1,14 +1,6 @@
 # == Route Map
 #
 #                   Prefix Verb     URI Pattern                                 Controller#Action
-#                 mygmails GET      /mygmails(.:format)                         mygmails#index
-#                          POST     /mygmails(.:format)                         mygmails#create
-#              new_mygmail GET      /mygmails/new(.:format)                     mygmails#new
-#             edit_mygmail GET      /mygmails/:id/edit(.:format)                mygmails#edit
-#                  mygmail GET      /mygmails/:id(.:format)                     mygmails#show
-#                          PATCH    /mygmails/:id(.:format)                     mygmails#update
-#                          PUT      /mygmails/:id(.:format)                     mygmails#update
-#                          DELETE   /mygmails/:id(.:format)                     mygmails#destroy
 #                     root GET      /                                           users#index
 #         new_user_session GET      /users/sign_in(.:format)                    devise/sessions#new
 #             user_session POST     /users/sign_in(.:format)                    devise/sessions#create
@@ -35,6 +27,8 @@
 #                          PATCH    /events/:id(.:format)                       events#update
 #                          PUT      /events/:id(.:format)                       events#update
 #                          DELETE   /events/:id(.:format)                       events#destroy
+#                user_sort GET      /users/:user_id/sort(.:format)              mygmails#sort
+#            user_calendar GET      /users/:user_id/calendar(.:format)          users#calendar
 #            user_mygmails GET      /users/:user_id/mygmails(.:format)          mygmails#index
 #                          POST     /users/:user_id/mygmails(.:format)          mygmails#create
 #         new_user_mygmail GET      /users/:user_id/mygmails/new(.:format)      mygmails#new
@@ -59,19 +53,21 @@ require 'omniauth-google-oauth2'
 Rails.application.routes.draw do
   
 
-  resources :mygmails
+  # resources :mygmails
 
   root :to => 'users#index'
   devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
-  #resources :mygmails
+  # resources :mygmails
+
   resources :events
-  
   #shallow do
     resources :users do
+      get '/mygmails/sort' => 'mygmails#sort'
       get 'calendar' => 'users#calendar'
      
       resources :mygmails
       get 'getgmails' => 'mygmails#getGmails'
+      
       end
    # end
   
