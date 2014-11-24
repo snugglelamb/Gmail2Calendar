@@ -31,6 +31,8 @@ end
 
 Then(/^I see an invalid login message$/) do
   #assert page.has_content? ("Invalid email or password.")
+  # currently use Log in, will change to not signed in successfully etc.
+  page.should have_content "Log in"
 end
 
 Then(/^I should be signed out$/) do
