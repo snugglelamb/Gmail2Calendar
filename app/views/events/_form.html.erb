@@ -25,7 +25,8 @@
   </div>
   <div class="field">
     <%= f.label :mygmail_id %><br>
-    <%= f.text_field :mygmail_id %>
+    <!-- <%= f.text_field :mygmail_id %> -->
+	<%= collection_select :event, :mygmail_id, Mygmail.all, :id, :eid%>
   </div>
   <div class="actions">
     <%= f.submit %>

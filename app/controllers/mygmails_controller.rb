@@ -36,8 +36,9 @@ class MygmailsController < ApplicationController
     render :template => "mygmails/index"
   end
   
+  # add event to google calendar
   def addevent
-    @mygmail = @user.mygmails.all
+    @mygmail = @user.mygmails.all? { |e|  }
     client = Google::APIClient.new
     client.authorization.access_token = @user.token
     service = client.discovered_api('calendar', 'v3')
@@ -95,7 +96,6 @@ class MygmailsController < ApplicationController
   end
   
   def index
-   
     @mygmail = @user.mygmails.all
     respond_with(@user, @mygmail)
   end
