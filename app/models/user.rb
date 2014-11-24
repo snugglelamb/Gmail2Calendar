@@ -33,6 +33,7 @@ class User < ActiveRecord::Base
   def self.find_for_google_oauth2(access_token, signed_in_resource=nil)
       data = access_token.info
       user = User.where(:provider => access_token.provider, :uid => access_token.uid ).first
+    
       if user
         user.token = access_token["credentials"]["token"]
         return user
@@ -44,7 +45,7 @@ class User < ActiveRecord::Base
         else
           user = User.create(
             name: data["name"],
-            provider:access_token.provider,
+            provider:access_token.provider, 
             email: data["email"],
             uid: access_token.uid,
             token: access_token["credentials"]["token"],
