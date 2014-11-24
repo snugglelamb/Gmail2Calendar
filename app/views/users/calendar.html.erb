@@ -1,6 +1,6 @@
 <%- model_class = User -%>
 <div class="actions">
-<%= link_to 'Back', users_path %>
+<%= link_to 'Back', users_path, :class => 'btn btn-primary' %>
 </div>
 
 <% id = user_calendar_path.match(/\d/)[0].to_i%>

@@ -140,6 +140,15 @@ class MygmailsController < ApplicationController
     @mygmail.destroy
     respond_with(@user, @mygmail)
   end
+  
+  def sort
+    # @mygmails = []
+    # if (Mygmail.attribute_names.include? (params[:field])) then
+    @mygmail = Mygmail.order(:eid)
+    # end
+    
+    render :index
+  end
 
   private
     def set_user
