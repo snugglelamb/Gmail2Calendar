@@ -4,6 +4,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
+	
 	<br><br><br>
     <title><%= content_for?(:title) ? yield(:title) : "Gmail2Calendar" %></title>
     <%= csrf_meta_tags %>
@@ -50,9 +52,12 @@
           <a class="brand" href="https://github.com/snugglelamb/Gmail2Calendar">Gmail2Calendar</a>
           <div class="container nav-collapse">
             <ul class="nav">
+			 <% if user_signed_in? %>
               <li><%= link_to "User", "/users"  %></li>
-              <li><%= link_to "Mygmail", "/mygmails"  %></li>
+              <li><%= link_to "Mygmail", "/users/#{current_user.id}/mygmails"  %></li>
               <li><%= link_to "Event", "/events"  %></li>
+              <li><%= link_to "Calendar", "/users/#{current_user.id}/calendar"  %></li>
+		  	<%end%>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -80,6 +85,7 @@
         </div><!--/row-->
 		
       <footer>
+		<br>
         <p>&copy; Gmail2Calendar 2014</p>
       </footer>
 	  <footer>
