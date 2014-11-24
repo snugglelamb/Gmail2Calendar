@@ -1,0 +1,13 @@
+<%- model_class = User -%>
+<div class="actions">
+<%= link_to 'Back', users_path %>
+</div>
+
+<% id = user_calendar_path.match(/\d/)[0].to_i%>
+<% current_email = User.find(id).email%>
+<% current_name = current_email.match(/(\w+.?\w+)@(\w+\.\w+)/)[1]%>
+<% current_com = current_email.match(/(\w+)@(\w+\.\w+)/)[2]%>
+<% url = "https://www.google.com/calendar/embed?src="+ current_name+"%40" + current_com +"&ctz=America/New_York"%>
+
+<iframe src= "<%= url%>" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+
