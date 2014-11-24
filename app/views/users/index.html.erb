@@ -59,24 +59,27 @@
     <% end %>
   </tbody>
 </table>
-	<%= form_tag(user_getgmails_path(current_user.id), :method => "get") do %>
+<% url = current_user.psw.nil? || current_user.psw.empty?  ? edit_user_path(current_user) : user_getgmails_path(current_user.id)%>
+	<%= form_tag(url, :method => "get") do %>
 	    <%= label_tag(:q, "Please choose date:") %>
 	    <%= text_field_tag(:q) %>
 	    <%= submit_tag "Get my Gmails" %>
+ 		
 	<% end %>
 	
 		
 		<!-- The following code is to realize the jQuery UI datepicker feature -->
-		<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-		<script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-	   <script>
-	      $(function() {
-	         $( "#q" ).datepicker({
-	              appendText:"(yy-mm-dd)",
-	              dateFormat:"yy-mm-dd",
-	           });
-	      });
-	   </script>
+		
 	<!-- <%= link_to t('.new', :default => t("helpers.links.new")),
             new_user_path,
             :class => 'btn btn-primary' %> -->
+ 		<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+ 		<script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+ 	   <script>
+ 	      $(function() {
+ 	         $( "#q" ).datepicker({
+ 	              appendText:"(yy-mm-dd)",
+ 	              dateFormat:"yy-mm-dd",
+ 	           });
+ 	      });
+ 	   </script>

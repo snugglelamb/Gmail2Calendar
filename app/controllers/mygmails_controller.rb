@@ -38,7 +38,7 @@ class MygmailsController < ApplicationController
   
   # add event to google calendar
   def addevent
-    @mygmail = @user.mygmails.all? { |e|  }
+    @mygmail = @user.mygmails.all
     client = Google::APIClient.new
     client.authorization.access_token = @user.token
     service = client.discovered_api('calendar', 'v3')
