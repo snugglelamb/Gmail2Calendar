@@ -55,7 +55,7 @@ Rails.application.routes.draw do
 
   # resources :mygmails
 
-  root :to => 'users#index'
+  root :to  => 'users#index'
   devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
   # resources :mygmails
 
