@@ -34,6 +34,9 @@
 	  last_sign_in_at        :datetime
 	  current_sign_in_ip     :string
 	  last_sign_in_ip        :string
+	  provider               :string
+ 	  uid                    :string
+ 	  token                  :string
 ```
 
 ###Table name: mygmails
@@ -42,6 +45,8 @@
 	  eid        :string
 	  created_at :datetime         not null
 	  updated_at :datetime         not null
+	  user_id    :integer
+ 	  content    :text
 ```	
 	
 ###Table name: events
@@ -55,6 +60,28 @@
 	  created_at :datetime         not null
 	  updated_at :datetime         not null
 ```
+
+## New Feature (2014/11/24)
+### Extract Gmail from mailbox and store in database
+	First user need to sign in with oauth2
+	At user index page, pick a date in the widget
+	Our app will automatically parse down emails from the input date
+	Parsed emails are stored in Mymail Table
+
+### Extract event and send to Google Calendar
+	During email parsing, if email contents have time format string(e.g. 2014/11/20), an event will be extracted and stored in Event table. Current version only support content with time format, but will soon come up with further updates.
+	The stored event will be automatically added to google calendar, with correct time.
+	Current time zone is set to EST.
+
+### Additional feature
+	Add Calendar Preview through iframe
+		Now user could see what changes are made to his/her google calendar
+		Usage: click link 'Calendar' on the menu bar, or type in url /user/:id/calendar
+	Add sort_by_eid function in Mygmail index page, could sort emails stored in database
+		Usage: Click the button or type in url /users/:id/mygmails/sort
+	Add Datetime picking widget to select date
+
+=========
 ###Relevant Links
 [Using Devise on rails app](http://guides.railsgirls.com/devise/)
 
@@ -65,12 +92,5 @@
 [Using devise helpers](https://github.com/plataformatec/devise/blob/master/lib/devise/controllers/helpers.rb)
 
 
-======
-#Iteration 2
 
-## Extract Gmail from mailbox and store in database
-
-## Filter mail and store as event
-
-## Add event to calendar
 
