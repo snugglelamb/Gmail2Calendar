@@ -2,6 +2,7 @@ require 'gmail'
 require 'date'
 require 'google/api_client'
 require_relative 'events_controller'
+require 'active_support/time'
 class MygmailsController < ApplicationController
 
   before_action :set_user , except: [:addevent ]
@@ -22,13 +23,16 @@ class MygmailsController < ApplicationController
           else
             text = email.text_part.body.to_s 
           end
+          # parser method needed here
           event_schedule = parsetime text
           @mygmail =  @user.mygmails.create(:eid => email.uid, :user_id => @user.id, :content =>text)
           @mygmail.save
+          # if no event_schedule then event is not added
           @event = @mygmail.events.create(:mygmail_id => @mygmail.id, :schedule => event_schedule, :name=> event_name) unless event_schedule.nil? 
           @event.save
         end
-        addevent if flag 
+        # addevent if flag
+        addevent if flag
       end
     end
     
@@ -39,6 +43,7 @@ class MygmailsController < ApplicationController
   # add event to google calendar
   def addevent
     @mygmail = @user.mygmails.all
+
     client = Google::APIClient.new
     client.authorization.access_token = @user.token
     service = client.discovered_api('calendar', 'v3')
@@ -57,7 +62,7 @@ class MygmailsController < ApplicationController
        
       }
         
-        @set_event = client.execute(
+      @set_event = client.execute(
                                 :api_method => service.events.insert,
                                 :parameters => {'calendarId' => @user.email, 'sendNotifications' => true},
                                 :body => JSON.dump(_tocal),
@@ -68,27 +73,30 @@ class MygmailsController < ApplicationController
   end
   
   def parsetime text
+    zone = "Eastern Time (US & Canada)"
       text.lines.each do |l| 
         # 2014-11-20
         if m = /\d{2,4}-\d{1,2}-\d{1,2}/.match(l)
-          date = DateTime.parse(m[0])
+          date = ActiveSupport::TimeZone[zone].parse(m[0])
           return date
         end
         #2014/11/20
         if m = /\d{4}\/\d{1,2}\/\d{1,2}/.match(l)
-          date = DateTime.parse(m[0])
+          date = ActiveSupport::TimeZone[zone].parse(m[0])
           return date
         end
         
         #/11/20/2014
-        if m = /\d{1,2}\/\d{1,2}\/\d{4}/.match(l)
-          date = DateTime.strptime(m[0],'%m/%d/%Y')
+        if m = /(\d{1,2}\/\d{1,2})\/(\d{4})/.match(l)
+          temp = m[2]+'/'+m[1]
+          # date = DateTime.strptime(m[0],'%m/%d/%Y').in_time_zone("EST")
+          date = ActiveSupport::TimeZone[zone].parse(temp)
           return date
         end
         
         #11/20
         if m = /\d{2,4}\/\d{1,2}\/\d{1,2}/.match(l)
-          date = DateTime.parse(m[0])
+          date = ActiveSupport::TimeZone[zone].parse(m[0])
           return date
         end
         
