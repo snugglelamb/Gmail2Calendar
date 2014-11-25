@@ -13,4 +13,5 @@
 class Mygmail < ActiveRecord::Base
   has_many :events
   belongs_to :users
+  validates :user_id, presence: true
 end
