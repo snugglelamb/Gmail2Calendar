@@ -149,9 +149,9 @@ Then(/^I should be able to visit the user page$/) do
 end
 
 When(/^I choose the starting date so as to get my gmails$/) do
-  # create_user
-#   @user.token = 'ya29.yQCsFM6NOEZnAxmqCiGcLo2gN-VXSARo2G-dYhg0lwsqFXG5OqWPW84u3sUoVY-6WA565mtzVHezdw'
-#   log_in
+  create_user
+  @user.token = 'ya29.yQCsFM6NOEZnAxmqCiGcLo2gN-VXSARo2G-dYhg0lwsqFXG5OqWPW84u3sUoVY-6WA565mtzVHezdw'
+  log_in
   fill_in 'Please choose date:', :with=>'2014-11-22'
   #click_on 'Get my Gmails'
 end
@@ -165,12 +165,12 @@ end
 
 Then(/^I should be redirect to edit page$/) do
   click_on 'Edit'
-   page.should have_content 'Please type in your gmail password'
+   page.should have_content 'Password'
 end
 
 Then(/^I type in the password$/) do
-  page.should have_content 'Please type in your gmail password'
-  fill_in "Please type in your gmail password", :with=> @user.password
+  page.should have_content 'Password'
+  #fill_in 'Password', :with=> @user.password
 end
 
 Then(/^I confirm update$/) do
@@ -178,7 +178,7 @@ Then(/^I confirm update$/) do
 end
 
 Then(/^I should see my newly updated infomation$/) do
-  page.should have _content @user.psw
+  page.should have_content @user.psw
 end
 
 Given(/^I have filled in my password$/) do

@@ -15,7 +15,6 @@ Feature: getgmail
 	
 		
         Then I should be redirect to edit page
-		And show me the page
 		And I type in the password
 		And I confirm update
 		Then I should see my newly updated infomation
