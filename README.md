@@ -60,8 +60,37 @@
 	  created_at :datetime         not null
 	  updated_at :datetime         not null
 ```
-
-## New Feature (2014/11/24)
+## Why these models
+### user
+	app user, must have a google account fist so as to use Gmail2Calendar
+	grant promission to view profile, gmail and google calendar
+### mygmail
+	belong to user
+	with content so as to extract events
+### event
+	things to be added to calendar
+	
+## Association and Why
+	user has many mygmails & mygmail belongs to user
+	one user will have many gmails
+	mygmail has many events & evenr belongs to mygmail
+	a email may have more than one events
+	user has many events through mygmail
+	by setting has many through, add assess mehtods to user to search events
+##Validations
+	for Mygmail model 
+	validates :user_id, presence: true
+	force that a mygmail must belong to a user
+	for Event model
+	validates :mygmail_id, presence: true
+	force that an event must belong to a gmail
+	for User model
+	validates :psw, length:{ minimum: 4 }
+	for security
+## Controller
+	controller is a connection between model and views
+	the most important funtion is getGmail and addevent in mygmail_controller
+	
 ### Extract Gmail from mailbox and store in database
 	First user need to sign in with oauth2
 	At user index page, pick a date in the widget
@@ -73,7 +102,7 @@
 	The stored event will be automatically added to google calendar, with correct time.
 	Current time zone is set to EST.
 
-### Additional feature
+### Additional functions
 	Add Calendar Preview through iframe
 		Now user could see what changes are made to his/her google calendar
 		Usage: click link 'Calendar' on the menu bar, or type in url /user/:id/calendar
@@ -91,6 +120,7 @@
 
 [Using devise helpers](https://github.com/plataformatec/devise/blob/master/lib/devise/controllers/helpers.rb)
 
+## 
 
 
 
