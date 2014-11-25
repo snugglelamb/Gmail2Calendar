@@ -29,7 +29,8 @@ class User < ActiveRecord::Base
   #attr_accessible :email, :password, :password_confirmation
   has_many :mygmails
   has_many :events , :through => :mygmails
- 
+  validates :psw, length:{ minimum: 4 }
+  
   
   def self.find_for_google_oauth2(access_token, signed_in_resource=nil)
       data = access_token.info
