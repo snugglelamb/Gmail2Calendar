@@ -26,6 +26,7 @@ group :test, :develpment do
   gem 'cucumber-rails-training-wheels'# get starting with cucumver
   gem 'database_cleaner'
   gem 'capybara' #framework 
+  gem "capybara-webkit"
   gem 'launchy'
 end
 group :development, :test do

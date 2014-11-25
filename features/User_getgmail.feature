@@ -12,10 +12,12 @@ Feature: getgmail
       Scenario: User has not provide password for gmail account
 	  	Given I have not filled in my password	 
         When I choose the starting date so as to get my gmails
+	
 		
         Then I should be redirect to edit page
-		Then I type in the password
-		Then I confirm update
+		And show me the page
+		And I type in the password
+		And I confirm update
 		Then I should see my newly updated infomation
 		
 	    Scenario: User has provided password for gmail account
