@@ -1,6 +1,6 @@
 def create_visitor
   @visitor ||= { :name => "Testy McUserton", :email => "cit597project@gmail.com",
-      :password => "cit597penn"}
+      :password => "cit597penn", :psw => "cit597penn"}
 end
 
 def delete_user
@@ -130,24 +130,30 @@ end
 
 Given(/^I am registered as and admin$/) do
   visit '/users/sign_in'
-  visit '/users/auth/google_oauth2/callback'
+  
 end
 
-When(/^I "Sign in with Google Oauth2"$/) do 
+When(/^I Sign in with Google Oauth2$/) do
   click_on "Sign in with Google Oauth2"
+  visit '/users/auth/google_oauth2/callback'
 end
 
 Then(/^I should be able to visit the user page$/) do
   visit '/users'
+  create_user
+  log_in
   page.should have_content 'Logged in as'
 end
 
 When(/^I choose the starting date so as to get my gmails$/) do
-  fill_in 'Please choose date:', :with=>'2014-11-22'
+  
+  @user.token = 'ya29.yQCsFM6NOEZnAxmqCiGcLo2gN-VXSARo2G-dYhg0lwsqFXG5OqWPW84u3sUoVY-6WA565mtzVHezdw'
+  page.should have_selector('Please choose date:', '22')
   click_button 'Get my Gmails'
 end
 
 Given(/^I have not filled in my password$/) do
+  create_user
   @user.psw = "" unless @user.psw.nil? || @user.psw.empty?
 end
 
@@ -168,6 +174,7 @@ Then(/^I should see my newly updated infomation$/) do
 end
 
 Given(/^I have filled in my password$/) do
+  create_user
   @user.psw = @user.password
 end
 

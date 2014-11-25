@@ -5,13 +5,12 @@ Feature: getgmail
   I want to be able to get my gmails
 
  
-	  Scenario: a user can log with google account
+	  　Background: a user can log with google account
 	    Given I am signed in with provider "google_oauth2"
-	    Then show me the page
+	    
 
       Scenario: User has not provide password for gmail account
-	  	Given I have not filled in my password
-		Then show me the page	 
+	  	Given I have not filled in my password	 
         When I choose the starting date so as to get my gmails
 		
         Then I should be redirect to edit page
