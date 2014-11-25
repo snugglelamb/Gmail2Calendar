@@ -45,13 +45,15 @@ Before('@admin') do
   OmniAuth.config.test_mode = true
 
   # the symbol passed to mock_auth is the same as the name of the provider set up in the initializer
-  OmniAuth.config.mock_auth[:google_oauth2] = {
+  OmniAuth.config.mock_auth[:google] = {
       "provider"=>"google_oauth2",
       "uid"=>"11796155715968097629",
-      "email"=>"cit597project@gmail.com"
-  }
+      "info"=>{"email"=>"test@xxxx.com", "first_name"=>"Test", "last_name"=>"User", "name"=>"Test User"},
+      "credentials" => {"token" => "mytoken","secret" => "mysecret"}
+    }
 end
-
+OmniAuth.config.add_mock(:google_oauth2, 
+{"uid" => '12345', "credentials" => {"token" => "mytoken","secret" => "mysecret"} })
 After('@admin') do
   OmniAuth.config.test_mode = false
 end
