@@ -90,6 +90,7 @@
 ## Controller
 	controller is a connection between model and views
 	the most important funtion is getGmail and addevent in mygmail_controller
+	also omniauth_callbacks_controller contains core information for oauth2 authentication
 	
 ### Extract Gmail from mailbox and store in database
 	First user need to sign in with oauth2
