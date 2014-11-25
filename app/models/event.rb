@@ -14,4 +14,5 @@
 class Event < ActiveRecord::Base
   belongs_to :mygmail
   validates :mygmail_id, presence: true
+  
 end
