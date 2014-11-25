@@ -127,13 +127,19 @@ When(/^I sign up with a mismatched password confirmation$/) do
   click_button 'Sign up'
 end
 
-Given(/^I am signed in with provider "google_oauth2"$/) do 
-  visit '/users/auth/google_oauth2'
+
+Given(/^I am registered as and admin$/) do
+  visit '/users/sign_in'
+  visit '/users/auth/google_oauth2/callback'
 end
 
-Given(/^I am logged in with google account and I am in user page$/) do
-  create_user
+When(/^I "Sign in with Google Oauth2"$/) do 
+  click_on "Sign in with Google Oauth2"
+end
+
+Then(/^I should be able to visit the user page$/) do
   visit '/users'
+  page.should have_content 'Logged in as'
 end
 
 When(/^I choose the starting date so as to get my gmails$/) do

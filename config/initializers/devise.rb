@@ -239,8 +239,9 @@ Devise.setup do |config|
   config.omniauth :google_oauth2, "980202493811-hnvb1dcgpu839icmc5jj5su1l3q0mlpr.apps.googleusercontent.com", "WlgsQfxI8hqv0-zrtXMeeZU5", 
   { access_type: "offline", approval_prompt: "",
      scope: 'https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/userinfo.profile'
+   
    }
-  
+
   #config.omniauth :google_oauth2, 'APP_ID', 'APP_SECRET' , { access_type: "offline", approval_prompt: "" }
   #config.omniauth :google_oauth2, OpenID::Store::Filesystem.new('/tmp'), :domain => 'gmail.com'
   # ==> Warden configuration

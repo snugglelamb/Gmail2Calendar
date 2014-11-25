@@ -19,6 +19,8 @@ gem 'omniauth-google-oauth2', git: 'https://github.com/zquestz/omniauth-google-o
 gem 'omniauth-openid'
 gem 'therubyracer'
 
+gem "fakeweb", "~> 1.3"
+
 group :test, :develpment do
   gem 'cucumber-rails', :require =>false #bdd
   gem 'cucumber-rails-training-wheels'# get starting with cucumver
