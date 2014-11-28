@@ -1,11 +1,17 @@
 source 'https://rubygems.org'
 
+
 gem "annotate"
 gem 'devise'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0.beta4'
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+group :production do
+  gem 'pg'
+end
+group :development, :test do
+  gem 'sqlite3'
+end
 # Use SCSS for stylesheets
 
 gem 'gmail'
@@ -20,7 +26,7 @@ gem 'omniauth-openid'
 gem 'therubyracer'
 
 gem "fakeweb", "~> 1.3"
-
+gem 'rails_12factor', group: :production
 group :test, :develpment do
   gem 'cucumber-rails', :require =>false #bdd
   gem 'cucumber-rails-training-wheels'# get starting with cucumver
