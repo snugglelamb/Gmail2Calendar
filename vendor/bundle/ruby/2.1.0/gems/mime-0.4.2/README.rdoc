@@ -1,0 +1,395 @@
+== Multipurpose Internet Mail Extensions (MIME)
+
+A library for building RFC compliant Multipurpose Internet Mail Extensions
+(MIME) messages. It can be used to construct standardized MIME messages for use
+in client/server communications, such as Internet mail or HTTP
+multipart/form-data transactions.
+
+
+== See Also
+
+* MIME for RFCs used to implement the library (other RFCs scattered throughout)
+* MIME::CompositeMedia for a description of composite media types
+* MIME::DiscreteMedia for a description of discrete media types
+* MIME::DiscreteMediaFactory for easy programming of discrete media types
+* MIME::ContentFormats for ways to encode/decode discrete media types
+
+
+== Media Inheritance Heirarchy
+
+   Media*
+     ^
+     |
+     |--DiscreteMedia*
+     |    ^
+     |    |
+     |    |--Application
+     |    |--Audio
+     |    |--Image
+     |    |--Text
+     |    +--Video
+     |
+     +--CompositeMedia*
+          ^
+          |
+          |--Message**
+          |    ^
+          |    |
+          |    |--ExternalBody**
+          |    |--Partial**
+          |    +--RFC822**
+          |
+          +--Multipart*
+               ^
+               |
+               |--Alternative
+               |--Digest**
+               |--Encrypted**
+               |--FormData
+               |--Mixed
+               |--Parallel**
+               |--Related
+               |--Report**
+               +--Signed**
+
+    * Abstract Class
+   ** Not implemented
+
+
+== MIME Message Format
+
+
+    ________________  -------------------+
+   |                |                    |
+   | RFC822 & MIME  |                    |
+   |    Headers     |                    |
+   |________________|                    |
+    ________________                     |
+   |                |                    |
+   |  MIME Headers  |                    |
+   |~~~~~~~~~~~~~~~~|  <-- MIME Entity*  |--- RFC822/MIME
+   |     Body*      |        (N)         |      Message
+   |________________|                    |
+    ________________                     |
+   |                |                    |
+   |  MIME Headers  |                    |
+   |~~~~~~~~~~~~~~~~|  <-- MIME Entity*  |
+   |     Body*      |        (N+1)       |
+   |________________|                    |
+                      -------------------+
+
+    * Optional
+
+
+Each <em>MIME Entity</em> must be a discrete (MIME::DiscreteMedia) or
+composite (MIME::CompositeMedia) media type. Because MIME is recursive,
+composite entity bodies may contain other composite or discrete entities and so
+on. However, discrete entities are non-recursive and contain only non-MIME
+bodies.
+
+ 
+== Examples
+
+<em>First things first!</em>
+
+  require 'mime'
+  include MIME   # allow ommision of "MIME::" namespace in examples below
+
+
+=== Instantiate a DiscreteMedia object
+
+Discrete media objects, such as text or video, can be created directly using a
+specific discrete media *class* or indirectly via the *factory*. If the media is
+file backed, like the example below, the factory will open and read the data
+file and determine the MIME type for you.
+
+  file = '/tmp/data.xml'
+
+  text_media = Text.new(File.read(file), 'xml')          # media class
+  text_media = DiscreteMediaFactory.create(file)         # media factory
+
+Discrete media objects can then be embedded in MIME messages as we will see in
+the next example.
+
+
+=== Simple text/plain RFC822 email message
+
+Create a well-formed email message with multiple recipients. The string
+representation of the message (i.e. to_s) can then be sent directly via an
+SMTP client.
+
+  msg = Mail.new    # blank message with current date and message ID headers
+  msg.date -= 3600                        # change date to 1 hour ago
+  msg.subject = 'This is important'       # add subject
+  msg.headers.set('Priority', 'urgent')   # add custom header
+
+  msg.body = Text.new('hello, world!', 'plain', 'charset' => 'us-ascii')
+  #
+  # The previous line is equivalent to the following snippet:
+  #
+  #   msg.body = 'hello, world!'
+  #   msg.headers.set('Content-Type', 'text/plain; charset=us-ascii')
+
+  msg.from = {'boss@example.com' => 'Boss Man'}            # mailbox hash
+  msg.bcc  = 'boss+home@example.com'                       # mailbox string
+  msg.cc   = %w(secretary@example.com manager@example.com) # mailbox array
+  msg.to   = {
+    'list@example.com' => nil,                             # no name display
+    'john@example.com' => 'John Doe',
+    'jane@example.com' => 'Jane Doe',
+  }
+
+  msg.to_s  # ready to be sent via SMTP
+
+
+=== RFC822 email message with image body
+
+Embedding a single image within an email message requires a single discrete 
+media image. However, embedding multiple images requires a multipart/mixed 
+composite media type to encapsulate all of the discrete media images.
+
+==== Email body with single image
+
+  img = Image.new(File.read('screenshot.png'), 'png')
+  img.disposition = 'inline'
+  img.description = 'My screenshot'
+  email = Mail.new(img)
+
+==== Email body with multiple images
+
+  msg = Multipart::Mixed.new
+  msg.inline Image.new(File.read('screenshot1.png'), 'png')
+  msg.inline Image.new(File.read('screenshot2.png'), 'png')
+  msg.description = 'My screenshots'
+  email = Mail.new(msg)
+
+
+=== Plain text multipart/mixed message with a file attachment
+
+The multipart/mixed content type can be used to aggregate multiple unrelated
+entities, such as text and an image.
+
+  text  = DiscreteMediaFactory.create('/tmp/data.txt')
+  image = DiscreteMediaFactory.create('/tmp/ruby.png')
+
+  mixed_msg = Multipart::Mixed.new
+  mixed_msg.add(text)
+  mixed_msg.attach(image)
+  mixed_msg.to_s
+
+
+=== Plain text and HTML multipart/alternative MIME message
+
+The multipart/alternative content type allows for multiple, alternatively
+formatted versions of the same content, such as plain text and HTML. Clients are
+then responsible for choosing the most suitable version for display.
+
+  text_msg = Text.new(<<TEXT_DATA, 'plain')
+  **Hello, world!**
+
+  Ruby is cool!
+  TEXT_DATA
+
+  html_msg = Text.new(<<HTML_DATA, 'html')
+  <html>
+  <body>
+    <h1>Hello, world!</h1>
+    <p>Ruby is cool!</p>
+  </body>
+  </html>
+  HTML_DATA
+
+  msg = Multipart::Alternative.new
+  msg.add(text_msg)  # add the simplest representations first
+  msg.add(html_msg)
+  msg.to_s           # or send in an email: Mail.new(msg)
+
+
+=== HTML multipart/related MIME email with embedded image
+
+Sometimes it is desirable to send a document that is made up of many separate
+parts. For example, an HTML page with embedded images. The multipart/related
+content type aggregates all the parts and creates the means for the root entity
+to reference the other entities.
+
+Notice the _src_ of the _img_ tag.
+
+  image = DiscreteMediaFactory.create('/tmp/ruby.png')
+  image.transfer_encoding = 'binary' # could base64 encode the image instead
+
+  html_msg = Text.new(<<EOF, 'html', 'charset' => 'iso-8859-1')
+  <html>
+  <body>
+    <h1>Ruby Image</h1>
+    <p>
+      Check out this cool pic.
+      <img alt="ruby is cool" src="cid:#{image.id}">
+    </p>
+    <p>Wasn't it cool?</p>
+  </body>
+  </html>
+  EOF
+
+  related_msg = Multipart::Related.new
+  related_msg.add(html_msg)
+  related_msg.inline(image)
+
+  email_msg         = Mail.new(related_msg)
+  email_msg.to      = 'jane@example.com'
+  email_msg.from    = 'john@example.com'
+  email_msg.subject = 'Ruby is cool, checkout the picture'
+  email_msg.to_s    # ready to send HTML email with image
+
+
+=== HTML form with file upload using multipart/form-data encoding
+
+This example builds a representation of an HTML form that can be POSTed to an
+HTTP server. It contains a single text input and a file input.
+
+  name_field     = Text.new('Joe Blow')
+  portrait_path  = '/tmp/joe_portrait.jpg'
+  portrait_field = Image.new(File.read(portrait_path), 'jpeg')
+  portrait_field.transfer_encoding = 'binary'
+
+  form_data = Multipart::FormData.new
+  form_data.add(name_field,      # field value
+                'name')          # field name, i.e. HTML input type=text
+  form_data.add(portrait_field,  # field value
+                'portrait',      # field name, i.e. HTML input type=file
+                portrait_path)   # suggest image filename to server
+  form_data.to_s                 # ready to POST via HTTP
+
+
+=== HTML form with file upload via DiscreteMediaFactory
+
+The outcome of this example is identical to the previous one. The only semantic
+difference is that the DiscreteMediaFactory module is used to instantiate the
+image object and automatically set the content type and FormData filename.
+
+  name_field     = Text.new('Joe Blow')
+  portrait_path  = '/tmp/joe_portrait.jpg'
+  portrait_field = DiscreteMediaFactory.create(portrait_path)
+  portrait_field.transfer_encoding = 'binary'
+
+  form_data = Multipart::FormData.new
+  form_data.add(name_field, 'name')
+  form_data.add(portrait_field, 'portrait')
+  form_data.to_s
+
+
+=== Avoid "embarrassing line wraps" using flowed format for text/plain
+
+Text/Plain is usually displayed as preformatted text, often in a fixed font.
+That is, the characters start at the left margin of the display window, and
+advance to the right until a CRLF sequence is seen, at which point a new line
+is started, again at the left margin. When a line length exceeds the display
+window, some clients will wrap the line, while others invoke a horizontal
+scroll bar. The result: embarrassing line wraps.
+
+Flowed format allows the sender to express to the receiver which lines can be
+considered a logical paragraph, and thus flowed (wrapped and joined) as
+appropriate.
+
+  long_paragraph =
+    "This is a continuous fixed-line-length paragraph that is longer than " +
+    "80 characters and will be soft line wrapped after the word '80'.\n\n"
+
+  flowed_txt = ContentFormats::TextFlowed.encode(long_paragraph * 2)
+  flowed_msg = Text.new(flowed_txt, 'plain', 'format' => 'flowed')
+  flowed_msg.to_s # neatly formatted text compatible with small to large screens
+
+
+== More Examples
+
+For many more examples, check the test class MIMETest.
+
+
+== Links
+
+Homepage      :: http://ecentryx.com/gems/mime
+Ruby Gem      :: https://rubygems.org/gems/mime
+Source Code   :: https://bitbucket.org/pachl/mime/src
+Bug Tracker   :: https://bitbucket.org/pachl/mime/issues
+Validators    :: Please check *all* of your messages using the following lint 
+                 tools and report errors to the bug tracker or directly to 
+                 pachl@ecentryx.com with "Ruby MIME" in the subject.
+
+                 - http://www.apps.ietf.org/content/message-lint
+                 - http://tools.ietf.org/tools/msglint
+
+
+== History
+
+1. 2008-11-05, v0.1
+   * First public release.
+2. 2013-12-18, v0.2.0
+   * Update for Ruby 1.9.3.
+   * Update Rakefile test, package, and rdoc tasks.
+   * Change test suite from Test::Unit to Minitest.
+   * Cleanup existing and add new tests cases.
+   * Clarify code comments and README examples.
+   * Fix content type detection.
+3. 2014-02-28, v0.3.0
+   * Simplify API of DiscreteMediaType subclasses.
+   * Disallow Content-Type changes after instantiating DiscreteMediaType.
+   * Add flowed format support for text/plain (RFC 2646). 
+4. 2014-04-18, v0.4.0
+   * <b>Major API disruption!</b>
+     * Rename classes:
+       - HeaderContainter => Header
+       - remove "Media" suffix from the 5 DiscreteMedia and 2 CompositeMedia 
+         subclasses.
+         See {commit}[https://bitbucket.org/pachl/mime/commits/4876b1390624a1c07682d2a11fd90296a83c002d]
+         for details.
+       - MIME::Message => MIME::Mail
+     * Rename methods:
+       - remove "_entity" suffix from add, inline, and attach in CompositeMedia.
+       - remove "content_" prefix from id, disposition, description, and 
+         transfer_encoding in Headers::MIME.
+     * Remove methods:
+       - Header#add
+     * Add methods:
+       - Header#set (replace Header#add)
+       - Header#get
+       - Header#delete
+     * Reverse order of entities in CompositeMedia::Body, which most likely
+       reverses all CompositeMedia #add, #inline, and #attach method calls.
+       See {commit}[https://bitbucket.org/pachl/mime/commits/a51745f346b517929383bdb6e60301c385ffab49]
+       for details.
+   * Other changes
+     * Use From header field domain in the Message-ID header.
+     * Add more randomness when generating header IDs.
+     * Header field names are now case-insensitive to comply with RFCs.
+     * Accept String, Array, and Hash for originator and destination mailboxes.
+     * Add CompositeMedia::Body class for nesting MIME entities.
+     * Improve docs and examples for Content-Disposition (inline/attachment).
+     * FIX: remove trailing CRLF in Mail#to_s and update tests.
+     * Add README links to message lint tools on IETF.org.
+     * Add Send, In-Reply-To, and References RFC 5322 header fields.
+     * Comply with RFC regarding parameter quoting in header field bodies.
+       I.e., do not quote atom/dot-atom parameter values.
+     * Many fixes and improvements in code, tests, documentation, and examples.
+5. 2014-04-20, v0.4.1
+   * Add bug tracker URL.
+   * Link to referenced commit messages.
+6. 2014-06-13, v0.4.2
+   * Ruby 1.8.7 compatibility fix.
+
+
+== License
+
+({ISC License}[http://opensource.org/licenses/ISC])
+
+Copyright (c) 2014, Clint Pachl <pachl@ecentryx.com>
+
+Permission to use, copy, modify, and/or distribute this software for any purpose
+with or without fee is hereby granted, provided that the above copyright notice
+and this permission notice appear in all copies.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND
+FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS
+OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER
+TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF
+THIS SOFTWARE.
