@@ -24,7 +24,7 @@ gem 'omniauth-google-oauth2', git: 'https://github.com/zquestz/omniauth-google-o
 gem 'omniauth-openid'
 gem 'therubyracer'
 
-group :test, :develpment do
+group :test, :development do
   gem 'sqlite3'
   gem 'cucumber-rails', :require =>false #bdd
   gem 'cucumber-rails-training-wheels'# get starting with cucumver
