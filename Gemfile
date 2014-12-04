@@ -1,15 +1,15 @@
 source 'https://rubygems.org'
 
 ruby '2.1.2'
-gem 'unicorn'
-gem "annotate"
+gem 'unicorn', '4.8.3'
+gem "annotate", '2.6.5'
 gem 'devise'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.0.beta4'
+gem 'rails', '4.1.8'
 # Use sqlite3 as the database for Active Record
 group :production do
-  gem 'pg'
-  gem 'rails_12factor'
+  gem 'pg', '0.17.1'
+  gem 'rails_12factor', '0.0.2'
 end
 
 # Use SCSS for stylesheets
@@ -34,7 +34,7 @@ group :test, :development do
   gem "capybara-webkit"
   gem 'launchy'
   gem "fakeweb", "~> 1.3"
-
+  gem 'simplecov',:require=>false
   gem 'factory_girl_rails'
   gem 'rspec-rails'
   gem 'byebug'
@@ -55,7 +55,7 @@ gem 'coffee-rails', '~> 4.1.0'
 # gem 'therubyracer', platforms: :ruby
 
 # Use jQuery as the JavaScript library
-gem 'jquery-rails', '~> 4.0.0.beta2'
+#gem 'jquery-rails', '~> 4.0.0.beta2'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder

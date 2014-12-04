@@ -1,3 +1,4 @@
+
 # == Schema Information
 #
 # Table name: users
@@ -29,8 +30,23 @@ one:
   name: MyString
   psw: MyString
   account: MyString
+  email: 1@gmail.com
+  created_at: 2014-11-07 18:36:39
+  updated_at: 2014-11-07 18:36:39
+  encrypted_password: ""
+  sign_in_count: "0"
 
 two:
   name: MyString
   psw: MyString
   account: MyString
+  email: 2@gmail.com
+
+  # name: 'MyString',
+#   psw: 'MyString',
+#   account: 'MyString',
+#   email: 'abc123456@gmail.com',
+#   created_at: 2014-11-07,
+#   updated_at: 2014-11-07,
+#   encrypted_password: "",
+#   sign_in_count: "0"

@@ -1,3 +1,5 @@
+require 'simplecov'
+SimpleCov.start 
 require 'test_helper'
 
 class EventsControllerTest < ActionController::TestCase
