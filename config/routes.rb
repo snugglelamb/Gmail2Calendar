@@ -55,7 +55,7 @@ Rails.application.routes.draw do
 
   # resources :mygmails
 
-  root :to  => 'users#index'
+  root :to  => 'users#welcome'
   devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
   # resources :mygmails
 
@@ -64,6 +64,7 @@ Rails.application.routes.draw do
     resources :users do
       get '/mygmails/sort' => 'mygmails#sort'
       get 'calendar' => 'users#calendar'
+      get 'welcome' => 'users#welcome'
      
       resources :mygmails
       get 'getgmails' => 'mygmails#getGmails'

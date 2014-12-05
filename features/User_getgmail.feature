@@ -9,11 +9,10 @@ Feature: getgmail
 	    Given I am signed in with provider "google_oauth2"
 	    
 
-      Scenario: User has not provide password for gmail account
+      Scenario: User has not provide password for gmail account	  
 	  	Given I have not filled in my password	 
         When I choose the starting date so as to get my gmails
 	
-		
         Then I should be redirect to edit page
 		And show me the page
 		And I type in the password

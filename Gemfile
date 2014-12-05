@@ -5,7 +5,7 @@ gem 'devise'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0.beta4'
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+# gem 'sqlite3'
 # Use SCSS for stylesheets
 
 gem 'gmail'
@@ -18,6 +18,7 @@ gem 'omniauth' ,'>= 1.0.0 '
 gem 'omniauth-google-oauth2', git: 'https://github.com/zquestz/omniauth-google-oauth2.git'
 gem 'omniauth-openid'
 gem 'therubyracer'
+gem 'chartkick'
 
 gem "fakeweb", "~> 1.3"
 
@@ -27,7 +28,9 @@ group :test, :develpment do
   gem 'database_cleaner'
   gem 'capybara' #framework 
   gem "capybara-webkit"
+  gem 'selenium-webdriver'
   gem 'launchy'
+  gem 'sqlite3'
 end
 group :development, :test do
   gem 'factory_girl_rails'
@@ -68,5 +71,9 @@ group :development, :test do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+end
+
+group :production do
+  gem 'pg'
 end
 

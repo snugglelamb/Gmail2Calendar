@@ -1,0 +1,39 @@
+<%- model_class = User -%>
+
+
+
+<% id = current_user.id %>
+
+<div><h2>Hi, <%= User.find(id).name%> </h2></div>
+<div> Current time: <%= Time.now %> </div>
+<% if User.find(id).events.count == 0%>
+
+<h3>Let's start adding events :)<h3>
+<%= link_to 'Start', users_path, :class => 'btn btn-primary' %>
+
+<% else%>
+<div>Number of emails parsed: <%= User.find(id).mygmails.count %></div>
+<div>Number of events added: <%= User.find(id).events.count%></div>
+
+<% max_id =  User.find(id).events.maximum("id")%>
+<% event = User.find(id).events.find(max_id)%>
+<div>Latest event added: <%= event.name %></div>
+<div>Scheduled time: <%= event.schedule%></div>
+<div>We've saved you <%= User.find(id).events.count * 2 %> seconds.</div>
+<div>Press Calendar to preview Calendar :)</div>
+
+<%= link_to 'Calendar', "/users/#{current_user.id}/calendar", :class => 'btn btn-danger' %>
+<%= link_to 'User', users_path, :class => 'btn btn-primary' %>
+
+
+<%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
+<div>
+	<%= bar_chart [["Emails parsed", User.find(id).mygmails.count], ["Events added", User.find(id).events.count]] %>
+</div>
+<div>
+	<%= pie_chart User.find(id).events.group(:name).count %>
+</div>
+
+<%end%>
+
+

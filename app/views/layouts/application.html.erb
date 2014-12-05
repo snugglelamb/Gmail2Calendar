@@ -53,6 +53,7 @@
           <div class="container nav-collapse">
             <ul class="nav">
 			 <% if user_signed_in? %>
+			  <li><%= link_to "Home",  "/users/#{current_user.id}/welcome"%></li>
               <li><%= link_to "User", "/users"  %></li>
               <li><%= link_to "Mygmail", "/users/#{current_user.id}/mygmails"  %></li>
               <li><%= link_to "Event", "/events"  %></li>

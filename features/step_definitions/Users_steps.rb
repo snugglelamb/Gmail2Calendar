@@ -133,7 +133,6 @@ end
 
 Given(/^I am registered as and admin$/) do
   visit '/users/sign_in'
-  
 end
 
 When(/^I Sign in with Google Oauth2$/) do
@@ -178,7 +177,7 @@ Then(/^I confirm update$/) do
 end
 
 Then(/^I should see my newly updated infomation$/) do
-  page.should have _content @user.psw
+  page.should have_content @user.psw
 end
 
 Given(/^I have filled in my password$/) do
