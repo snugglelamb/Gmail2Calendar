@@ -110,6 +110,10 @@
 		Usage: Click the button or type in url /users/:id/mygmails/sort
 	Add Datetime picking widget to select date
 
+	Add welcome screen
+		User could see the visualized data of how many emails parsed and how many events added
+		if user is using this for the first time, will be guided to start using the app. (newborn wizard)
+		
 =========
 ###Relevant Links
 [Using Devise on rails app](http://guides.railsgirls.com/devise/)
@@ -120,6 +124,7 @@
 
 [Using devise helpers](https://github.com/plataformatec/devise/blob/master/lib/devise/controllers/helpers.rb)
 
+[Visualize Data in Rails](https://github.com/ankane/chartkick)
 ## 
 
 
