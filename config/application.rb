@@ -21,7 +21,11 @@ module Gmail2Calendar
     # config.i18n.default_locale = :de
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
+<<<<<<< HEAD
     #config.active_record.raise_in_transactional_callbacks = true
+=======
+    config.active_record.raise_in_transactional_callbacks = true
+>>>>>>> 8c7fdd22267b3e084ec53981936c03584c8dcb19
     config.time_zone = 'Eastern Time (US & Canada)'
     config.active_record.default_timezone = :local
   end
