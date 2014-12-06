@@ -12,8 +12,11 @@ group :production do
   gem 'rails_12factor', '0.0.2'
 end
 
+<<<<<<< HEAD
 # Use SCSS for stylesheets
 
+=======
+>>>>>>> 8c7fdd22267b3e084ec53981936c03584c8dcb19
 gem 'gmail'
 gem 'google-api-client', '>= 0.6'
 gem 'sinatra', '>= 1.3'
@@ -25,8 +28,14 @@ gem 'omniauth-google-oauth2', git: 'https://github.com/zquestz/omniauth-google-o
 gem 'omniauth-openid'
 gem 'therubyracer'
 
+<<<<<<< HEAD
 group :test, :development do
   gem 'sqlite3'
+=======
+gem "fakeweb", "~> 1.3"
+
+group :test, :develpment do
+>>>>>>> 8c7fdd22267b3e084ec53981936c03584c8dcb19
   gem 'cucumber-rails', :require =>false #bdd
   gem 'cucumber-rails-training-wheels'# get starting with cucumver
   gem 'database_cleaner'
