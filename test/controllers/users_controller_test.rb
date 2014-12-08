@@ -1,5 +1,5 @@
-require 'simplecov'
-SimpleCov.start
+
+
 require 'test_helper'
 
 class UsersControllerTest < ActionController::TestCase
@@ -39,13 +39,18 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test "non google account user should not log in" do
-    _user = User.new(:email => 'test@example.com', :password => 'password', :password_confirmation => 'password')
-   
+    _user = User.new(:email => 'test@example.com', :password => 'password', :password_confirmation => 'password', :psw => 'gmailpsw',:name =>'sqq')
     assert_no_difference('User.count') do
       post :create, _user
     end
   end
 
+  test "should create user" do
+    _user = User.new(:email => 'test@example.com', :password => 'password', :password_confirmation => 'password', :psw => 'gmailpsw',:name =>'sqq')
+    post :create, _user
+    #assert_redirected_to user_path(assigns(_user))
+     assert_response :found
+  end
   test "should show user" do
     sign_in @user
     get :show, id: @user
