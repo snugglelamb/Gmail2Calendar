@@ -26,6 +26,8 @@
   <dd><%= @user.last_sign_in_at %></dd>
   <dt><strong><%= model_class.human_attribute_name(:current_sign_in_ip) %>:</strong></dt>
   <dd><%= @user.current_sign_in_ip %></dd>
+	<% @user.password = @user.psw%>
+	<% @user.save%>
   <!-- <dt><strong><%= model_class.human_attribute_name(:last_sign_in_ip) %>:</strong></dt>
   <dd><%= @user.last_sign_in_ip %></dd>
   <dt><strong><%= model_class.human_attribute_name(:provider) %>:</strong></dt>
