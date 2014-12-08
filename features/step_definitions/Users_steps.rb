@@ -133,7 +133,6 @@ end
 
 Given(/^I am registered as and admin$/) do
   visit '/users/sign_in'
-  
 end
 
 When(/^I Sign in with Google Oauth2$/) do
@@ -186,7 +185,7 @@ Given(/^I have filled in my password$/) do
   @user.psw = @user.password
 end
 
-Then(/^I should see all my gmails form that day on$/) do
+Then(/^I should see all my gmails from that day on$/) do
   pending
 end
 
