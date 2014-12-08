@@ -36,7 +36,6 @@ group :test, :develpment do
   gem 'capybara' #framework 
   gem "capybara-webkit"
   gem 'launchy'
-  gem "fakeweb", "~> 1.3"
   gem 'simplecov',:require=>false
   gem 'factory_girl_rails'
   gem 'rspec-rails'
