@@ -1,16 +1,21 @@
 source 'https://rubygems.org'
 
-ruby '2.1.2'
+# ruby '2.1.2'
+gem 'chartkick'
 gem 'unicorn', '4.8.3'
 gem "annotate", '2.6.5'
 gem 'devise'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.8'
 # Use sqlite3 as the database for Active Record
+
 group :production do
   gem 'pg', '0.17.1'
   gem 'rails_12factor', '0.0.2'
 end
+
+# gem 'sqlite3'
+# Use SCSS for stylesheets
 
 
 gem 'gmail'
@@ -35,9 +40,12 @@ group :test, :develpment do
   gem 'database_cleaner'
   gem 'capybara' #framework 
   gem "capybara-webkit"
+  gem 'selenium-webdriver'
   gem 'launchy'
-  gem "fakeweb", "~> 1.3"
   gem 'simplecov',:require=>false
+end
+
+group :development, :test do
   gem 'factory_girl_rails'
   gem 'rspec-rails'
   gem 'byebug'
@@ -74,6 +82,4 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-
-
 
