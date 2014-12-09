@@ -12,6 +12,10 @@ group :production do
   gem 'rails_12factor', '0.0.2'
 end
 
+<<<<<<< HEAD
+=======
+# Use SCSS for stylesheets
+>>>>>>> 80b9531d57e14817f50e56632a38fd98ebb927af
 
 gem 'gmail'
 gem 'google-api-client', '>= 0.6'
@@ -24,11 +28,15 @@ gem 'omniauth-google-oauth2', git: 'https://github.com/zquestz/omniauth-google-o
 gem 'omniauth-openid'
 gem 'therubyracer'
 
+<<<<<<< HEAD
 
 
 group :test, :develpment do
 
   gem "fakeweb", "~> 1.3"
+=======
+group :test, :development do
+>>>>>>> 80b9531d57e14817f50e56632a38fd98ebb927af
   gem 'sqlite3'
   gem 'cucumber-rails', :require =>false #bdd
   gem 'cucumber-rails-training-wheels'# get starting with cucumver
@@ -36,10 +44,18 @@ group :test, :develpment do
   gem 'capybara' #framework 
   gem "capybara-webkit"
   gem 'launchy'
+<<<<<<< HEAD
+=======
+  gem "fakeweb", "~> 1.3"
+>>>>>>> 80b9531d57e14817f50e56632a38fd98ebb927af
   gem 'simplecov',:require=>false
   gem 'factory_girl_rails'
   gem 'rspec-rails'
   gem 'byebug'
+<<<<<<< HEAD
+=======
+
+>>>>>>> 80b9531d57e14817f50e56632a38fd98ebb927af
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0.0.beta4'
 

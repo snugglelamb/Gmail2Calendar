@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 
 
+=======
+require 'simplecov'
+SimpleCov.start
+>>>>>>> 80b9531d57e14817f50e56632a38fd98ebb927af
 require 'test_helper'
 
 class UsersControllerTest < ActionController::TestCase
@@ -39,7 +44,12 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test "non google account user should not log in" do
+<<<<<<< HEAD
     _user = User.new(:email => 'test@example.com', :password => 'password', :password_confirmation => 'password', :psw => 'gmailpsw',:name =>'sqq')
+=======
+    _user = User.new(:email => 'test@example.com', :password => 'password', :password_confirmation => 'password')
+   
+>>>>>>> 80b9531d57e14817f50e56632a38fd98ebb927af
     assert_no_difference('User.count') do
       post :create, _user
     end

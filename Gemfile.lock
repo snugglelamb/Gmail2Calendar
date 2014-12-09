@@ -208,7 +208,11 @@ GEM
       thor (>= 0.18.1, < 2.0)
     raindrops (0.13.0)
     rake (10.4.2)
+<<<<<<< HEAD
     rdoc (4.2.0)
+=======
+    rdoc (4.1.2)
+>>>>>>> 80b9531d57e14817f50e56632a38fd98ebb927af
       json (~> 1.4)
     ref (1.0.5)
     responders (1.1.2)
@@ -240,12 +244,20 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
+<<<<<<< HEAD
     signet (0.6.0)
       addressable (~> 2.3)
       extlib (~> 0.9)
       faraday (~> 0.9)
       jwt (~> 1.0)
       multi_json (~> 1.10)
+=======
+    signet (0.5.1)
+      addressable (>= 2.2.3)
+      faraday (>= 0.9.0.rc5)
+      jwt (>= 0.1.5)
+      multi_json (>= 1.0.0)
+>>>>>>> 80b9531d57e14817f50e56632a38fd98ebb927af
     simplecov (0.9.1)
       docile (~> 1.1.0)
       multi_json (~> 1.0)
@@ -273,7 +285,11 @@ GEM
     thor (0.19.1)
     thread_safe (0.3.4)
     tilt (1.4.1)
+<<<<<<< HEAD
     turbolinks (2.5.3)
+=======
+    turbolinks (2.5.2)
+>>>>>>> 80b9531d57e14817f50e56632a38fd98ebb927af
       coffee-rails
     twitter-bootstrap-rails (2.2.8)
       actionpack (>= 3.1)
