@@ -27,5 +27,6 @@ class Configurable < User
          remember_for: 7.days, timeout_in: 15.minutes, unlock_in: 10.days
 end
 
+
 # if valid user, then devise warden give authentication
 # controller receive as current_user
