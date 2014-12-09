@@ -64,15 +64,16 @@
 	<%= link_to 'Set up Gmail Account Access', edit_user_path(current_user), :method => :get, :confirm => 'You will be directed to set up Gmail Account Access' %>
 <% else %>
 	<% url = user_getgmails_path(current_user.id) %>
+	
+
 	<%= form_tag(url, :method => "get") do %>
 	    <%= label_tag(:q, "Please choose date:") %>
 	    <%= text_field_tag(:q) %>
 	    <%= submit_tag "Get my Gmails" %>
 	<% end %>
+
 <% end %>
 
-
-	
 			
 	<!-- <%= link_to t('.new', :default => t("helpers.links.new")),
             new_user_path,
