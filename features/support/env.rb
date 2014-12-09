@@ -43,22 +43,22 @@ end
 # FakeWeb.register_uri(:post, 'http://google.com/oauth/access_token', :body => 'oauth_token=fake&oauth_token_secret=fake')
 # FakeWeb.register_uri(:get, 'http://google.com/account/verify_credentials.json', :response => File.join('features', 'fixtures', 'verify_credentials.json'))
 
-Before('@admin') do
+
   OmniAuth.config.test_mode = true
 
   # the symbol passed to mock_auth is the same as the name of the provider set up in the initializer
-  OmniAuth.config.mock_auth[:google] = {
+  OmniAuth.config.mock_auth[:google_auth2] = OmniAuth::AuthHash.new({
       "provider"=>"google_oauth2",
       "uid"=>"11796155715968097629",
       "info"=>{"email"=>"test@xxxx.com", "first_name"=>"Test", "last_name"=>"User", "name"=>"Test User"},
       "credentials" => {"token" => "mytoken","secret" => "mysecret"}
-    }
-end
-OmniAuth.config.add_mock(:google_oauth2, 
-{"uid" => '12345', "credentials" => {"token" => "mytoken","secret" => "mysecret"} })
-After('@admin') do
-  OmniAuth.config.test_mode = false
-end
+      })
+
+# OmniAuth.config.add_mock(:google_oauth2,
+# {"uid" => '12345', "credentials" => {"token" => "mytoken","secret" => "mysecret"} })
+
+ # OmniAuth.config.test_mode = false
+
 # Before('@admin') do
 #   OmniAuth.config.test_mode = true
 #

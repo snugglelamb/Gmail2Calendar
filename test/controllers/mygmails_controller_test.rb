@@ -1,5 +1,4 @@
-require 'simplecov'
-SimpleCov.start 'rails'
+
 require 'test_helper'
 
 class MygmailsControllerTest < ActionController::TestCase

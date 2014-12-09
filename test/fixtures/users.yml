@@ -53,8 +53,4 @@ two:
 #   created_at: 2014-11-07,
 #   updated_at: 2014-11-07,
 #   encrypted_password: "",
-<<<<<<< HEAD
-#   sign_in_count: "0"
-=======
-#   sign_in_count: "0"
->>>>>>> 80b9531d57e14817f50e56632a38fd98ebb927af
+

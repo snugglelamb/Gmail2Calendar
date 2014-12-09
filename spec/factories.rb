@@ -12,7 +12,7 @@ mygmail nil
 
     factory :user do
         email "aabb@hh.de"
-        password "ruby"
+        password "rubyrubyruby"
         #password_confrimation "ruby"
     end
 end
