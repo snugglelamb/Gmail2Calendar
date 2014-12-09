@@ -46,7 +46,7 @@ two:
   account: MyString
   email: 2@gmail.com
 
-  # name: 'MyString',
+# name: 'MyString',
 #   psw: 'MyString',
 #   account: 'MyString',
 #   email: 'abc123456@gmail.com',

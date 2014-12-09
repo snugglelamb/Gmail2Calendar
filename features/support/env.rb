@@ -3,7 +3,8 @@
 # newer version of cucumber-rails. Consider adding your own code to a new file
 # instead of editing this one. Cucumber will automatically load all features/**/*.rb
 # files.
-
+require 'simplecov'
+SimpleCov.start 'rails'
 require 'cucumber/rails'
 require 'fakeweb'
 Capybara.javascript_driver = :webkit
@@ -58,6 +59,21 @@ OmniAuth.config.add_mock(:google_oauth2,
 After('@admin') do
   OmniAuth.config.test_mode = false
 end
+# Before('@admin') do
+#   OmniAuth.config.test_mode = true
+#
+#   # the symbol passed to mock_auth is the same as the name of the provider set up in the initializer
+#   OmniAuth.config.mock_auth[:google_oauth2] = {
+#       "provider"=>"google_oauth2",
+#       "uid"=>"11796155715968097629",
+#       "email"=>"cit597project@gmail.com"
+#   }
+# end
+#
+# After('@admin') do
+#   OmniAuth.config.test_mode = false
+# end
+
 # You may also want to configure DatabaseCleaner to use different strategies for certain features and scenarios.
 # See the DatabaseCleaner documentation for details. Example:
 #

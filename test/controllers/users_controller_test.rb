@@ -1,10 +1,5 @@
-<<<<<<< HEAD
-
-
-=======
 require 'simplecov'
-SimpleCov.start
->>>>>>> 80b9531d57e14817f50e56632a38fd98ebb927af
+SimpleCov.start 'rails'
 require 'test_helper'
 
 class UsersControllerTest < ActionController::TestCase
@@ -20,7 +15,7 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test "blocks unauthenticated access" do
-    post :create, { user: { email: "user@example.org", password: "password", password_confirmation: "password" } }
+    post :create, { user: { email: "user@example.org", password: "password", password_confirmation: "password" }}
         assert_redirected_to new_user_session_path
     end
 
@@ -31,10 +26,11 @@ class UsersControllerTest < ActionController::TestCase
     end
  
 
-  test "username wrong length" do
+  test "user password wrong length" do
      user = User.find_by_name("swap")
      user.psw = "12"
-     assert !user.save, "password too short"
+     # assert !user.save, "password too short"
+     assert_equal !user.save, false
    end
 
   test "should get new" do
@@ -44,23 +40,22 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test "non google account user should not log in" do
-<<<<<<< HEAD
-    _user = User.new(:email => 'test@example.com', :password => 'password', :password_confirmation => 'password', :psw => 'gmailpsw',:name =>'sqq')
-=======
     _user = User.new(:email => 'test@example.com', :password => 'password', :password_confirmation => 'password')
    
->>>>>>> 80b9531d57e14817f50e56632a38fd98ebb927af
     assert_no_difference('User.count') do
       post :create, _user
     end
   end
 
-  test "should create user" do
-    _user = User.new(:email => 'test@example.com', :password => 'password', :password_confirmation => 'password', :psw => 'gmailpsw',:name =>'sqq')
-    post :create, _user
-    #assert_redirected_to user_path(assigns(_user))
-     assert_response :found
+  test "should not be able to create new user" do
+    sign_in @user
+    assert_no_difference('User.count') do
+      post :create, user: {:email => 'test@example.com', :password => 'password22'} 
+    end
+    
   end
+  
+  
   test "should show user" do
     sign_in @user
     get :show, id: @user

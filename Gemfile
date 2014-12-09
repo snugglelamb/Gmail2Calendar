@@ -1,21 +1,22 @@
 source 'https://rubygems.org'
 
-ruby '2.1.2'
+# ruby '2.1.2'
+gem 'chartkick'
 gem 'unicorn', '4.8.3'
 gem "annotate", '2.6.5'
 gem 'devise'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.8'
 # Use sqlite3 as the database for Active Record
+
 group :production do
   gem 'pg', '0.17.1'
   gem 'rails_12factor', '0.0.2'
 end
 
-<<<<<<< HEAD
-=======
+# gem 'sqlite3'
 # Use SCSS for stylesheets
->>>>>>> 80b9531d57e14817f50e56632a38fd98ebb927af
+
 
 gem 'gmail'
 gem 'google-api-client', '>= 0.6'
@@ -28,34 +29,27 @@ gem 'omniauth-google-oauth2', git: 'https://github.com/zquestz/omniauth-google-o
 gem 'omniauth-openid'
 gem 'therubyracer'
 
-<<<<<<< HEAD
 
 
 group :test, :develpment do
 
   gem "fakeweb", "~> 1.3"
-=======
-group :test, :development do
->>>>>>> 80b9531d57e14817f50e56632a38fd98ebb927af
   gem 'sqlite3'
   gem 'cucumber-rails', :require =>false #bdd
   gem 'cucumber-rails-training-wheels'# get starting with cucumver
   gem 'database_cleaner'
   gem 'capybara' #framework 
   gem "capybara-webkit"
+  gem 'selenium-webdriver'
   gem 'launchy'
-<<<<<<< HEAD
-=======
-  gem "fakeweb", "~> 1.3"
->>>>>>> 80b9531d57e14817f50e56632a38fd98ebb927af
   gem 'simplecov',:require=>false
+end
+
+group :development, :test do
   gem 'factory_girl_rails'
   gem 'rspec-rails'
   gem 'byebug'
-<<<<<<< HEAD
-=======
 
->>>>>>> 80b9531d57e14817f50e56632a38fd98ebb927af
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0.0.beta4'
 
@@ -88,6 +82,3 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-
-
-

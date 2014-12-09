@@ -9,11 +9,10 @@ Feature: getgmail
 	    Given I am signed in with provider "google_oauth2"
 	    
 
-      Scenario: User has not provide password for gmail account
+      Scenario: User has not provide password for gmail account	  
 	  	Given I have not filled in my password	 
         When I choose the starting date so as to get my gmails
 	
-		
         Then I should be redirect to edit page
 		And I type in the password
 		And I confirm update
@@ -22,7 +21,7 @@ Feature: getgmail
 	    Scenario: User has provided password for gmail account
 		  Given I have filled in my password
 	      When I choose the starting date so as to get my gmails
-	      Then I should see all my gmails form that day on
+	      Then I should see all my gmails from that day on
 	  
 		  When I visit my events
 		  Then I should see all events this app parsed from my gmails
