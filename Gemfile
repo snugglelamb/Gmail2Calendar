@@ -11,9 +11,10 @@ gem 'rails', '4.2.0.beta4'
 gem 'gmail'
 gem 'google-api-client', '>= 0.6'
 gem 'sinatra', '>= 1.3'
-
+gem 'bootstrap-sass', '3.2.0.0'
 gem 'twitter-bootstrap-rails'
 gem 'less-rails'
+
 gem 'omniauth' ,'>= 1.0.0 '
 gem 'omniauth-google-oauth2', git: 'https://github.com/zquestz/omniauth-google-oauth2.git'
 gem 'omniauth-openid'
@@ -27,7 +28,7 @@ group :test, :develpment do
   gem 'cucumber-rails-training-wheels'# get starting with cucumver
   gem 'database_cleaner'
   gem 'capybara' #framework 
-  gem "capybara-webkit"
+  #gem "capybara-webkit"
   gem 'selenium-webdriver'
   gem 'launchy'
   gem 'sqlite3'

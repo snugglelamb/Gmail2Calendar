@@ -38,36 +38,14 @@
     <%= favicon_link_tag 'favicon.ico', :rel => 'shortcut icon' %>
 
     <%= javascript_include_tag "application" %>
+	<script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
   </head>
   <body>
+	<%= render 'layouts/header' %>
 
-    <div class="navbar navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          <a class="brand" href="https://github.com/snugglelamb/Gmail2Calendar">Gmail2Calendar</a>
-          <div class="container nav-collapse">
-            <ul class="nav">
-			 <% if user_signed_in? %>
-			  <li><%= link_to "Home",  "/users/#{current_user.id}/welcome"%></li>
-              <li><%= link_to "User", "/users"  %></li>
-              <li><%= link_to "Mygmail", "/users/#{current_user.id}/mygmails"  %></li>
-              <li><%= link_to "Event", "/events"  %></li>
-              <li><%= link_to "Calendar", "/users/#{current_user.id}/calendar"  %></li>
-		  	<%end%>
-            </ul>
-          </div><!--/.nav-collapse -->
-        </div>
-      </div>
-    </div>
-
-    <div class="container">
+    <div class="container" id="grand-container">
         <div class="row">
-          <div class="span9">
+          <div class="span12">
 			
             <%= bootstrap_flash %>
             <%= yield %>
@@ -84,21 +62,8 @@
             <!-- </div> --><!--/.well -->
           <!-- </div> --><!--/span-->
         </div><!--/row-->
-		
-      <footer>
-		<br>
-        <p>&copy; Gmail2Calendar 2014</p>
-      </footer>
-	  <footer>
-		  <!-- <p class="navbar-text pull-right"> -->
-		  <% if user_signed_in? %>
-		    Logged in as <strong><%= current_user.email %></strong>.
-		    <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
-		    <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
-		  
-		  <% end %>
-	  </footer>
     </div> <!-- /container -->
 	
+	<%= render 'layouts/footer' %>
   </body>
 </html>

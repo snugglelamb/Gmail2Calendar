@@ -1,0 +1,23 @@
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="https://github.com/snugglelamb/Gmail2Calendar">Gmail2Calendar</a>
+          <div class="container nav-collapse">
+            <ul class="nav">
+			 <% if user_signed_in? %>
+			  <li><%= link_to "Home",  "/users/#{current_user.id}/welcome"%></li>
+              <li><%= link_to "User", "/users"  %></li>
+              <li><%= link_to "Mygmail", "/users/#{current_user.id}/mygmails"  %></li>
+              <li><%= link_to "Event", "/events"  %></li>
+              <li><%= link_to "Calendar", "/users/#{current_user.id}/calendar"  %></li>
+		  	<%end%>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>

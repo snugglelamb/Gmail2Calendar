@@ -67,17 +67,14 @@
 	    <%= submit_tag "Get my Gmails" %>
 	<% end %>
 	
-		<!-- The following code is to realize the jQuery UI datepicker feature -->
-		<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-		<script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-	    <script>
-	       $(function() {
-	          $( "#q" ).datepicker({
-	               appendText:"(yy-mm-dd)",
-	               dateFormat:"yy-mm-dd",
-	            });
-	       });
-	    </script>
+<script>
+    $(function() {
+       $( "#q" ).datepicker({
+            appendText:"(yy-mm-dd)",
+            dateFormat:"yy-mm-dd",
+         });
+    });
+</script>
 	
 	<!-- <%= link_to t('.new', :default => t("helpers.links.new")),
 	            new_user_path,
