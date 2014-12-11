@@ -22,11 +22,58 @@
 #  uid                    :string
 #  token                  :string
 #
-
+require 'simplecov'
+SimpleCov.start 'rails'
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
+  #include Devise::TestHelpers
+  include Warden::Test::Helpers                  
+   Warden.test_mode!                                    
+  setup do
+   # @request.env["devise.mapping"] = Devise.mappings[:user]
+   @attr = {
+         :name => "Example User",
+         :email => "user@example.com",
+         :password => "123changeme",
+         :password_confirmation => "123changeme",
+         :psw => "thepassword"
+       }
+    
+
+       OmniAuth.config.mock_auth[:google_auth2] = OmniAuth::AuthHash.new({
+           "provider"=>"google_oauth2",
+           "uid"=>"11796155715968097629",
+           "info"=>{"email"=>"test@xxxx.com", "first_name"=>"Test", "last_name"=>"User", "name"=>"Test User"},
+           "credentials" => {"token" => "mytoken","secret" => "mysecret"}
+           })
+  end
+  
+  
+  test "google_auth2 with present user" do
+    #sign_in @user
+    @user = User.new(@attr)
+    assert User.find_for_google_oauth2(OmniAuth.config.mock_auth[:google_auth2] )
+  end
+  
+  test "google_auth2 with registered user" do
+    @user = User.new(@attr)
+    assert @user.save
+    assert User.where(:email =>@user.email).first
+    _env = OmniAuth.config.mock_auth[:google_auth2]
+    _env["uid"] = "thisisanewnewuid"
+    _env["info"]["email"] = "user@example.com"
+    assert User.find_for_google_oauth2(_env)
+  end
+  test "google_auth2 with non registered user" do
+    
+    _env = OmniAuth.config.mock_auth[:google_auth2]
+    _env["uid"] = "thisisanewnewuid"
+    assert User.find_for_google_oauth2(_env)
+  end
+  
+ 
 end
