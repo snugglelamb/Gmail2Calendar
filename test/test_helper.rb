@@ -21,6 +21,12 @@ class ActiveSupport::TestCase
   end
 end
 
+class Configurable < User
+  devise :database_authenticatable, :confirmable, :rememberable, :timeoutable, :lockable,
+         stretches: 15, pepper: 'abcdef', allow_unconfirmed_access_for: 5.days,
+         remember_for: 7.days, timeout_in: 15.minutes, unlock_in: 10.days
+end
+
 
 # if valid user, then devise warden give authentication
 # controller receive as current_user
