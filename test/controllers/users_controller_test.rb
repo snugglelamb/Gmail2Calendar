@@ -26,12 +26,12 @@ class UsersControllerTest < ActionController::TestCase
     end
  
 
-  test "user password wrong length" do
-     user = User.find_by_name("swap")
-     user.psw = "12"
-     # assert !user.save, "password too short"
-     assert_equal !user.save, false
-   end
+  # test "user password wrong length" do
+  #    user = User.find_by_name("swap")
+  #    user.psw = "12"
+  #    # assert !user.save, "password too short"
+  #    assert_equal !user.save, false
+  #  end
 
   test "should get new" do
     sign_in @user

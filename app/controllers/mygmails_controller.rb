@@ -67,6 +67,8 @@ class MygmailsController < ApplicationController
                                 :parameters => {'calendarId' => @user.email, 'sendNotifications' => true},
                                 :body => JSON.dump(_tocal),
                                 :headers => {'Content-Type' => 'application/json'})
+                                
+                                p "Event Added Suceessfully."
                         
       end
     end
@@ -94,11 +96,11 @@ class MygmailsController < ApplicationController
           return date
         end
         
-        #11/20
-        if m = /\d{2,4}\/\d{1,2}\/\d{1,2}/.match(l)
-          date = ActiveSupport::TimeZone[zone].parse(m[0])
-          return date
-        end
+        # #11/20
+        # if m = /\d{2,4}\/\d{1,2}\/\d{1,2}/.match(l)
+        #   date = ActiveSupport::TimeZone[zone].parse(m[0])
+        #   return date
+        # end
         
     end
   end
@@ -154,7 +156,6 @@ class MygmailsController < ApplicationController
     # if (Mygmail.attribute_names.include? (params[:field])) then
     @mygmail = Mygmail.order(:eid)
     # end
-    
     render :index
   end
 

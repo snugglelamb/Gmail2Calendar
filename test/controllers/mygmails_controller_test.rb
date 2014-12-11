@@ -68,4 +68,47 @@ class MygmailsControllerTest < ActionController::TestCase
 
     assert_redirected_to user_mygmails_path
   end
+  
+  
+  test "should be able to sort gmails by eid" do
+    sign_in @user
+    
+    m1 = mygmails(:one)
+    m2 = mygmails(:two)
+    get :sort, user_id: @mygmail.user_id
+    assert Mygmail.all.index(m2) > Mygmail.all.index(m1)
+    
+    ## funny assert here, need to figure out how to make value in fixtures just integer
+  end
+  
+  test "should parse time correctly" do
+    temp = MygmailsController.new
+
+    text = mygmails(:one).content
+    parsed = temp.parsetime text
+    assert_not_nil parsed.to_s =~/2014-12-12/
+    
+    text = mygmails(:two).content
+    parsed = temp.parsetime text
+    assert_not_nil parsed.to_s =~/2014-12-12/
+    
+    text = mygmails(:three).content
+    parsed = temp.parsetime text
+    assert_not_nil parsed.to_s =~/2014-12-12/
+    
+    text = mygmails(:four).content
+    parsed = temp.parsetime text
+    assert_not_nil parsed.to_s =~/2014-12-12/
+    
+  end
+  
+  test "should add event" do 
+    sign_in @user
+    temp = MygmailsController.new
+    get :addevent, params[:@user]
+    
+  end
+  
 end
+
+
