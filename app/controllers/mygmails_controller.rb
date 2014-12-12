@@ -32,7 +32,7 @@ class MygmailsController < ApplicationController
           @event.save
         end
         # addevent if flag
-        addevent if flag
+        addevent @user if flag
       end
     end
     
@@ -41,35 +41,34 @@ class MygmailsController < ApplicationController
   end
   
   # add event to google calendar
-  def addevent
-    @mygmail = @user.mygmails.all
+  def addevent user
+    @mygmail = user.mygmails.all
 
     client = Google::APIClient.new
-    client.authorization.access_token = @user.token
+    client.authorization.access_token = user.token
     service = client.discovered_api('calendar', 'v3')
     @mygmail.each do |g|
       g.events.all.each do |e|
-        _tocal = {
-          'summary' => e.name,
-            'description' => e.name,
-            'location' => e.location,
-            'start' => {
-                'dateTime' => e.schedule.to_datetime.rfc3339},
-            'end' => {
-                'dateTime' => ((e.schedule.to_datetime + 2.0/24).rfc3339)},
-            'attendees' => { "email" => @user.email }
+        unless e.schedule.nil?
+          _tocal = {
+            'summary' => e.name,
+              'description' => e.name,
+              'location' => e.location,
+              'start' => {
+                  'dateTime' => e.schedule.to_datetime.rfc3339},
+              'end' => {
+                  'dateTime' => ((e.schedule.to_datetime + 2.0/24).rfc3339)},
+              'attendees' => { "email" => user.email }
+        }
         
-       
-      }
-        
-      @set_event = client.execute(
-                                :api_method => service.events.insert,
-                                :parameters => {'calendarId' => @user.email, 'sendNotifications' => true},
-                                :body => JSON.dump(_tocal),
-                                :headers => {'Content-Type' => 'application/json'})
+          @set_event = client.execute(
+                                  :api_method => service.events.insert,
+                                  :parameters => {'calendarId' => user.email, 'sendNotifications' => true},
+                                  :body => JSON.dump(_tocal),
+                                  :headers => {'Content-Type' => 'application/json'})
                                 
-                                p "Event Added Suceessfully."
-                        
+          p "Event Added Suceessfully."
+        end                
       end
     end
   end

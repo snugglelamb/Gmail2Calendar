@@ -1,4 +1,5 @@
-
+require 'simplecov'
+SimpleCov.start 'rails'
 require 'test_helper'
 
 class MygmailsControllerTest < ActionController::TestCase
@@ -101,11 +102,17 @@ class MygmailsControllerTest < ActionController::TestCase
     
   end
   
-  test "should add event" do 
+  test "should add Events to Calendar" do 
     sign_in @user
     temp = MygmailsController.new
-    get :addevent, params[:@user]
-    
+    assert_not_nil temp.addevent @user
+  end
+  
+  test "should get gmail and store event" do
+    sign_in @user
+    assert_difference('Event.count', 6) do
+      get(:getGmails, user_id: @mygmail.user_id, q:"2014-11-20")
+    end
   end
   
 end

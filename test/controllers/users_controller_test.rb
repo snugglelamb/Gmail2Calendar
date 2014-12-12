@@ -88,4 +88,5 @@ class UsersControllerTest < ActionController::TestCase
   test "index" do
     assert_respond_to( @controller, :index )
   end
+  
 end
