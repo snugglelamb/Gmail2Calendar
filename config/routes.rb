@@ -67,7 +67,7 @@ Rails.application.routes.draw do
       get 'welcome' => 'users#welcome'
      
       resources :mygmails
-      get 'getgmails' => 'mygmails#getGmails'
+        get 'getgmails' => 'mygmails#getGmails'
       
       end
    # end
