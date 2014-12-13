@@ -7,7 +7,7 @@ class UsersControllerTest < ActionController::TestCase
   include Devise::TestHelpers
   include Warden::Test::Helpers                        
     Warden.test_mode!                                    
-  
+  include Capybara::DSL
   setup do
     @request.env["devise.mapping"] = Devise.mappings[:user]
     @user = users(:one)
@@ -55,8 +55,7 @@ class UsersControllerTest < ActionController::TestCase
     end
     
   end
-  
-  
+ 
   test "should show user" do
     sign_in @user
     get :show, id: @user

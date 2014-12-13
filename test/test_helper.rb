@@ -2,8 +2,13 @@ require 'simplecov'
 SimpleCov.start 'rails'
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
-require 'rails/test_help'
+require 'capybara'
+require 'database_cleaner'
+require 'capybara/dsl'
 
+
+require 'rails/test_help'
+#require "rails_app/config/environment"
 
 class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
@@ -18,6 +23,12 @@ class ActiveSupport::TestCase
           allow(request.env['warden']).to receive(:authenticate!).and_return(user)
           allow(controller).to receive(:current_user).and_return(user)
         end
+  end
+  
+  Capybara.configure do |config|
+    config.run_server = false
+    config.default_driver = :webkit
+    config.app_host = 'http://localhost:3000' # change url
   end
 end
 

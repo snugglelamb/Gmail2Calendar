@@ -7,6 +7,8 @@ require 'simplecov'
 SimpleCov.start 'rails'
 require 'cucumber/rails'
 require 'fakeweb'
+
+
 Capybara.javascript_driver = :webkit
 # Capybara defaults to CSS3 selectors rather than XPath.
 # If you'd prefer to use XPath, just uncomment this line and adjust any
@@ -53,14 +55,16 @@ end
       "info"=>{"email"=>"test@xxxx.com", "first_name"=>"Test", "last_name"=>"User", "name"=>"Test User"},
       "credentials" => {"token" => "mytoken","secret" => "mysecret"}
 
-    }
-end
+      })
+
 OmniAuth.config.add_mock(:google_oauth2, 
 {"uid" => '12345', "credentials" => {"token" => "mytoken","secret" => "mysecret"} })
 After('@admin') do
   OmniAuth.config.test_mode = false
 end
->>>>>>> 5d302c08b94dbe302602f06391d7774160d47723
+
+
+
 # Before('@admin') do
 #   OmniAuth.config.test_mode = true
 #
