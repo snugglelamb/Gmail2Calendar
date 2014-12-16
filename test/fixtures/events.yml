@@ -14,14 +14,18 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+
   id: 1
-  name: Test Case 1
+
+  name: MyString
+
   schedule: 2014-11-07 18:36:39
   location: MyString
   mygmail_id: 10
 
 
 two:
+
   id: 2
   name: Test Case 2
   schedule: 2014-12-11 18:36:39
@@ -46,5 +50,6 @@ five:
   id: 5
   name: Test Case 5
   schedule: 2014-12-11 18:36:39
+
   location: MyString
   mygmail_id: 4

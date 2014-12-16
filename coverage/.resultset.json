@@ -1,6 +1,7 @@
 {
   "RSpec": {
     "coverage": {
+<<<<<<< HEAD
       "/Users/siyuqiu/Documents/Upenn/CIT597/Gmail2Calendar/app/models/user.rb": [
         null,
         null,
@@ -522,10 +523,14 @@
         null,
         null,
         null,
+=======
+      "/Users/siyuqiu/Documents/Upenn/CIT597/Gmail2Calendar/app/controllers/users_controller.rb": [
+>>>>>>> 80b9531d57e14817f50e56632a38fd98ebb927af
         null,
         null,
         1,
         1,
+<<<<<<< HEAD
         1,
         null,
         null
@@ -539,11 +544,16 @@
         null,
         null,
         null,
+=======
+        null,
+        1,
+>>>>>>> 80b9531d57e14817f50e56632a38fd98ebb927af
         null,
         null,
         null,
         null,
         1,
+<<<<<<< HEAD
         1,
         1,
         1,
@@ -577,11 +587,25 @@
         null,
         4,
         1,
+=======
+        0,
+        0,
+        null,
+        null,
+        1,
+        0,
+        null,
+        null,
+        1,
+        0,
+        0,
+>>>>>>> 80b9531d57e14817f50e56632a38fd98ebb927af
         null,
         null,
         1,
         null,
         null,
+<<<<<<< HEAD
         null,
         null,
         null,
@@ -636,10 +660,27 @@
         null,
         1,
         1,
+=======
+        1,
+        0,
+        0,
+        0,
+        null,
+        null,
+        1,
+        0,
+        0,
+        null,
+        null,
+        1,
+        0,
+        0,
+>>>>>>> 80b9531d57e14817f50e56632a38fd98ebb927af
         null,
         null,
         1,
         1,
+<<<<<<< HEAD
         1,
         null,
         null,
@@ -674,6 +715,13 @@
         null,
         null,
         null,
+=======
+        0,
+        null,
+        null,
+        1,
+        0,
+>>>>>>> 80b9531d57e14817f50e56632a38fd98ebb927af
         null,
         null
       ],
@@ -693,6 +741,7 @@
         1,
         null,
         1,
+<<<<<<< HEAD
         12,
         12,
         null,
@@ -779,10 +828,26 @@
         null,
         1,
         0,
+=======
+        0,
+        0,
+        null,
+        0,
+        0,
+        0,
         0,
         0,
         null,
         null,
+        0,
+        0,
+        null,
+>>>>>>> 80b9531d57e14817f50e56632a38fd98ebb927af
+        0,
+        0,
+        null,
+        null,
+<<<<<<< HEAD
         1,
         0,
         0,
@@ -844,5 +909,33 @@
       ]
     },
     "timestamp": 1418425142
+=======
+        0,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        0,
+        null,
+        null,
+        null
+      ],
+      "/Users/siyuqiu/Documents/Upenn/CIT597/Gmail2Calendar/app/helpers/events_helper.rb": [
+        1,
+        null
+      ],
+      "/Users/siyuqiu/Documents/Upenn/CIT597/Gmail2Calendar/app/helpers/mygmails_helper.rb": [
+        1,
+        null
+      ],
+      "/Users/siyuqiu/Documents/Upenn/CIT597/Gmail2Calendar/app/helpers/users_helper.rb": [
+        1,
+        null
+      ]
+    },
+    "timestamp": 1417853744
+>>>>>>> 80b9531d57e14817f50e56632a38fd98ebb927af
   }
 }

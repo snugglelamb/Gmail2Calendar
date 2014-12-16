@@ -29,9 +29,11 @@
 one:
   id: 1
   name: swap
+
   psw: cit597penn
   account: MyString
   email: cit597project@gmail.com
+
   encrypted_password: $2a$10$UuFyf02kxENQ/JPk8pIV.OeONBDML9MRmIxjgRENULSvnQq7upklq
   created_at: 2012-11-27 00:00:00
   updated_at: 2012-11-27 00:00:00
@@ -45,12 +47,4 @@ two:
   psw: MyString
   account: MyString
   email: 2@gmail.com
-
-# name: 'MyString',
-#   psw: 'MyString',
-#   account: 'MyString',
-#   email: 'abc123456@gmail.com',
-#   created_at: 2014-11-07,
-#   updated_at: 2014-11-07,
-#   encrypted_password: "",
 

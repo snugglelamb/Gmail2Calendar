@@ -1,5 +1,7 @@
 require 'simplecov'
+
 SimpleCov.start 'rails'
+
 require 'test_helper'
 
 class UsersControllerTest < ActionController::TestCase
@@ -7,7 +9,9 @@ class UsersControllerTest < ActionController::TestCase
   include Devise::TestHelpers
   include Warden::Test::Helpers                        
     Warden.test_mode!                                    
+
   include Capybara::DSL
+
   setup do
     @request.env["devise.mapping"] = Devise.mappings[:user]
     @user = users(:one)
@@ -15,7 +19,9 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test "blocks unauthenticated access" do
-    post :create, { user: { email: "user@example.org", password: "password", password_confirmation: "password" }}
+
+    post :create, { user: { email: "user@example.org", password: "password", password_confirmation: "password" } }
+
         assert_redirected_to new_user_session_path
     end
 
@@ -25,12 +31,11 @@ class UsersControllerTest < ActionController::TestCase
      assert_response :success
     end
  
-  test "user password wrong length" do
+
+  test "username wrong length" do
      user = User.find_by_name("swap")
      user.psw = "12"
-
      assert !user.save, "password too short"
-     #assert_equal !user.save, false
 
    end
 
@@ -87,5 +92,5 @@ class UsersControllerTest < ActionController::TestCase
   test "index" do
     assert_respond_to( @controller, :index )
   end
-  
+
 end
