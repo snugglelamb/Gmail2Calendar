@@ -37,6 +37,10 @@ class UsersController < ApplicationController
     @user.destroy
     respond_with(@user)
   end
+  
+  def calendar
+    render 'calendar'
+  end
 
   private
     def set_user
