@@ -113,6 +113,7 @@
 ## Test
 ###Unit Test
 	test models: User, Mygmail, Event
+	in user model: test function google_auth2 on 3 kinds of user: present, registered, non-registered
 	coverage: 100%
 
 ###Functional Test
