@@ -21,7 +21,7 @@ end
 gem 'gmail'
 gem 'google-api-client', '>= 0.6'
 gem 'sinatra', '>= 1.3'
-
+gem 'bootstrap-sass', '3.2.0.0'
 gem 'twitter-bootstrap-rails', '2.2.8'
 gem 'less-rails'
 gem 'omniauth' ,'>= 1.0.0 '
