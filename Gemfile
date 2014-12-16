@@ -1,10 +1,7 @@
 source 'https://rubygems.org'
 
-
+# ruby '2.1.2'
 gem 'chartkick'
-
-ruby '2.1.2'
-
 gem 'unicorn', '4.8.3'
 gem "annotate", '2.6.5'
 gem 'devise'
@@ -17,7 +14,7 @@ group :production do
   gem 'rails_12factor', '0.0.2'
 end
 
-
+# gem 'sqlite3'
 # Use SCSS for stylesheets
 
 
@@ -34,11 +31,9 @@ gem 'therubyracer'
 
 
 
-
 group :test, :develpment do
 
   gem "fakeweb", "~> 1.3"
-
   gem 'sqlite3'
   gem 'cucumber-rails', :require =>false #bdd
   gem 'cucumber-rails-training-wheels'# get starting with cucumver
@@ -47,12 +42,10 @@ group :test, :develpment do
   gem "capybara-webkit"
   gem 'selenium-webdriver'
   gem 'launchy'
-
   gem 'simplecov',:require=>false
 end
 
 group :development, :test do
-
   gem 'factory_girl_rails'
   gem 'rspec-rails'
   gem 'byebug'
@@ -89,5 +82,3 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-
-
