@@ -110,7 +110,21 @@
 	Add sort_by_eid function in Mygmail index page, could sort emails stored in database
 		Usage: Click the button or type in url /users/:id/mygmails/sort
 	Add Datetime picking widget to select date
+## Test
+###Unit Test
+	test models: User, Mygmail, Event
+	coverage: 100%
 
+###Functional Test
+	test controllers: user\_controller, mygmail\_controller, event\_controller, application\_controller
+	coverage: 99.3%
+
+###Other Parts
+	helpers: devise\_helper, event\_helper, mygmail\_helper, user\_helper, application\_helper
+
+###In Total
+	All Files 98.9%
+	12 files in total. 182 relevant lines. 180 lines covered and 2 lines missed
 =========
 ###Relevant Links
 [Using Devise on rails app](http://guides.railsgirls.com/devise/)
