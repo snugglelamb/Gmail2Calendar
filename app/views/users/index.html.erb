@@ -61,7 +61,7 @@
 </table>
 <% url = current_user.psw.nil? || current_user.psw.empty? ? edit_user_path(current_user) : user_getgmails_path(current_user.id)%>
 
-	<%= form_tag(url, :method => "get") do %>
+	<%= form_tag(url, :method => "getGmails") do %>
 	    <%= label_tag(:q, "Please choose date:") %>
 	    <%= text_field_tag(:q) %>
 	    <%= submit_tag "Get my Gmails" %>
