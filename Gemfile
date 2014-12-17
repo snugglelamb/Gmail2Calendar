@@ -43,9 +43,7 @@ group :test, :develpment do
   gem 'selenium-webdriver'
   gem 'launchy'
   gem 'simplecov',:require=>false
-end
 
-group :development, :test do
   gem 'factory_girl_rails'
   gem 'rspec-rails'
   gem 'byebug'
