@@ -31,7 +31,7 @@ gem 'therubyracer'
 
 
 
-group :test, :develpment do
+group :test, :development do
 
   gem "fakeweb", "~> 1.3"
   gem 'sqlite3'
