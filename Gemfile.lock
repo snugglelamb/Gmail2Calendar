@@ -1,4 +1,13 @@
 GIT
+  remote: https://github.com/nu7hatch/gmail.git
+  revision: 483c0387cacc9fe90b2e2a8290277fc1c8a287ff
+  specs:
+    gmail (0.4.2)
+      gmail_xoauth (>= 0.3.0)
+      mail (>= 2.2.1)
+      mime (>= 0.1)
+
+GIT
   remote: https://github.com/zquestz/omniauth-google-oauth2.git
   revision: 74d9e4fa4ec369bbb088628b1f400e54d3094fd9
   specs:
@@ -115,10 +124,6 @@ GEM
     ffi (1.9.6)
     gherkin (2.12.2)
       multi_json (~> 1.3)
-    gmail (0.4.2)
-      gmail_xoauth (>= 0.3.0)
-      mail (>= 2.2.1)
-      mime (>= 0.1)
     gmail_xoauth (0.4.1)
       oauth (>= 0.3.6)
     google-api-client (0.7.1)
@@ -331,7 +336,7 @@ DEPENDENCIES
   devise
   factory_girl_rails
   fakeweb (~> 1.3)
-  gmail
+  gmail!
   google-api-client (>= 0.6)
   jbuilder (~> 2.0)
   jquery-rails
