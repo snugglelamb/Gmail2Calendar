@@ -12,14 +12,15 @@ gem 'rails', '4.1.8'
 group :production do
   gem 'pg', '0.17.1'
   gem 'rails_12factor', '0.0.2'
+  gem 'gmail'
+  gem 'google-api-client', '>= 0.6'
 end
 
 # gem 'sqlite3'
 # Use SCSS for stylesheets
 
 
-gem 'gmail'
-gem 'google-api-client', '>= 0.6'
+
 gem 'sinatra', '>= 1.3'
 gem 'bootstrap-sass', '3.2.0.0'
 gem 'twitter-bootstrap-rails', '2.2.8'
