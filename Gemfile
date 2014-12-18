@@ -31,7 +31,7 @@ gem 'therubyracer'
 
 
 
-group :test, :develpment do
+group :test, :development do
 
   gem "fakeweb", "~> 1.3"
   gem 'sqlite3'
@@ -43,9 +43,6 @@ group :test, :develpment do
   gem 'selenium-webdriver'
   gem 'launchy'
   gem 'simplecov',:require=>false
-end
-
-group :development, :test do
   gem 'factory_girl_rails'
   gem 'rspec-rails'
   gem 'byebug'
