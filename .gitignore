@@ -17,3 +17,4 @@
 .env
 /vendor/bundle
 .a
+.env
