@@ -9,12 +9,12 @@
 #   pool: 5
 #   timeout: 5000
 
-# production: &default
-#   adapter: postgresql
-#   encoding: unicode
-#   # For details on connection pooling, see rails configuration guide
-#   # http://guides.rubyonrails.org/configuring.html#database-pooling
-#   pool: 5
+production: &default
+  adapter: postgresql
+  encoding: unicode
+  # For details on connection pooling, see rails configuration guide
+  # http://guides.rubyonrails.org/configuring.html#database-pooling
+  pool: 5
 
 # development:
 #   # <<: *default
@@ -43,8 +43,8 @@ test:
  pool: 5
  timeout: 5000
 
-production:
- adapter: sqlite3
- database: db/production.sqlite3
- pool: 5
- timeout: 5000
+# production:
+#  adapter: sqlite3
+#  database: db/production.sqlite3
+#  pool: 5
+#  timeout: 5000
