@@ -67,7 +67,7 @@ class MygmailsController < ApplicationController
                                   :body => JSON.dump(_tocal),
                                   :headers => {'Content-Type' => 'application/json'})
                                 
-          p "Event Added Suceessfully."
+          
         end                
       end
     end
