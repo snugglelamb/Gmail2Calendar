@@ -10,6 +10,7 @@ class UsersControllerTest < ActionController::TestCase
   include Warden::Test::Helpers                        
     Warden.test_mode!                                    
 
+
   include Capybara::DSL
 
   setup do
@@ -33,8 +34,10 @@ class UsersControllerTest < ActionController::TestCase
  
 
   test "username wrong length" do
+
      user = User.find_by_name("swap")
      user.psw = "12"
+
      assert !user.save, "password too short"
 
    end
@@ -92,5 +95,4 @@ class UsersControllerTest < ActionController::TestCase
   test "index" do
     assert_respond_to( @controller, :index )
   end
-
 end

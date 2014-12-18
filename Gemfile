@@ -20,6 +20,7 @@ end
 
 
 gem 'google-api-client', '>= 0.6'
+
 gem 'gmail', git:'https://github.com/nu7hatch/gmail.git'
 
 gem 'sinatra', '>= 1.3'
@@ -30,7 +31,7 @@ gem 'omniauth' ,'>= 1.0.0 '
 gem 'omniauth-google-oauth2', git: 'https://github.com/zquestz/omniauth-google-oauth2.git'
 gem 'omniauth-openid'
 gem 'therubyracer'
-  gem 'web-console', '~> 2.0.0.beta4'
+gem 'web-console', '~> 2.0.0.beta4'
 
 
 group :test, :development do
@@ -45,7 +46,6 @@ group :test, :development do
   gem 'selenium-webdriver'
   gem 'launchy'
   gem 'simplecov',:require=>false
-
   gem 'factory_girl_rails'
   gem 'rspec-rails'
   gem 'byebug'
@@ -82,3 +82,4 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+
