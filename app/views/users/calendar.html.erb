@@ -3,7 +3,8 @@
 <%= link_to 'Back', users_path, :class => 'btn btn-primary' %>
 </div>
 
-<% id = user_calendar_path.match(/\d/)[0].to_i%>
+<!-- <% id = user_calendar_path.match(/\d/)[0].to_i%> -->
+<% id = params[:user_id]%>
 <% current_email = User.find(id).email%>
 <% current_name = current_email.match(/(\w+.?\w+)@(\w+\.\w+)/)[1]%>
 <% current_com = current_email.match(/(\w+)@(\w+\.\w+)/)[2]%>
