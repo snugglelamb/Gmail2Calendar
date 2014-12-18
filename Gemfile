@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 # ruby '2.1.2'
 gem 'chartkick'
-gem 'unicorn', '4.8.3'
+
 gem "annotate", '2.6.5'
 gem 'devise'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -12,15 +12,15 @@ gem 'rails', '4.1.8'
 group :production do
   gem 'pg', '0.17.1'
   gem 'rails_12factor', '0.0.2'
-  gem 'google-api-client', '>= 0.6'
- gem 'gmail', git:'https://github.com/nu7hatch/gmail.git'
+  gem 'unicorn', '4.8.3'
 end
 
 # gem 'sqlite3'
 # Use SCSS for stylesheets
 
 
-
+gem 'google-api-client', '>= 0.6'
+gem 'gmail', git:'https://github.com/nu7hatch/gmail.git'
 
 gem 'sinatra', '>= 1.3'
 gem 'bootstrap-sass', '3.2.0.0'
@@ -30,7 +30,7 @@ gem 'omniauth' ,'>= 1.0.0 '
 gem 'omniauth-google-oauth2', git: 'https://github.com/zquestz/omniauth-google-oauth2.git'
 gem 'omniauth-openid'
 gem 'therubyracer'
-
+  gem 'web-console', '~> 2.0.0.beta4'
 
 
 group :test, :development do
@@ -51,7 +51,7 @@ group :test, :development do
   gem 'byebug'
 
   # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 2.0.0.beta4'
+
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
