@@ -114,10 +114,16 @@
 ###Unit Test
 	test models: User, Mygmail, Event
 	in user model: test function google_auth2 on 3 kinds of user: present, registered, non-registered
+	test design descreption: The above three conditions cover all the situation when a user try to use our app
 	coverage: 100%
-
+	
+	
 ###Functional Test
 	test controllers: user\_controller, mygmail\_controller, event\_controller, application\_controller
+	user\_controller: test 7 resourseful methods index, create, delete, edit, update, new, destroy user model is bunded with devis, to test it we set environment for devise and mock authentication for OmniAuth.
+	mygmail\_controller: apart from the 7 common methods,test addevent, parsetext, sortbyid,  getGmails 
+	event\_controller: 7 common methods
+			  
 	coverage: 99.3%
 
 ###Other Parts
@@ -126,6 +132,10 @@
 ###In Total
 	All Files 98.9%
 	12 files in total. 182 relevant lines. 180 lines covered and 2 lines missed
+
+##heroku
+	[url](https://gmail2calendar.herokuapp.com)
+	Performance: all parts work fine except the usage of gmail gem behaves differently under development mode and production mode. To be more specific, some methods supported under development mode are not uasable after running our app on heroku. Except this one, no other production error.
 =========
 ###Relevant Links
 [Using Devise on rails app](http://guides.railsgirls.com/devise/)
