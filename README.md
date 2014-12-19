@@ -114,7 +114,8 @@
 	Based on bootstrap with embellish view.
 	In the index page of user, deplay how many emails have been parsed and how many events 
 	have been added with graphical data analysis.
-	We embeds Google Calendar to 
+	We embeds Google Calendar into our app to show the final result of adding events extracted from
+	users' gmail to the users' Google Calendar.
 ## Test
 ###Unit Test
 	test models: User, Mygmail, Event
