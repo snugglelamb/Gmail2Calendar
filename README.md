@@ -110,6 +110,11 @@
 	Add sort_by_eid function in Mygmail index page, could sort emails stored in database
 		Usage: Click the button or type in url /users/:id/mygmails/sort
 	Add Datetime picking widget to select date
+##View
+	Based on bootstrap with embellish view.
+	In the index page of user, deplay how many emails have been parsed and how many events 
+	have been added with graphical data analysis.
+	We embeds Google Calendar to 
 ## Test
 ###Unit Test
 	test models: User, Mygmail, Event
@@ -134,6 +139,15 @@
 
 ###Other Parts
 	helpers: devise_helper, event_helper, mygmail_helper, user_helper, application_helper
+###EC
+	Our test covers:
+	All Files (98.9%) 
+	Controllers (99.3%)
+	Models (100.0%)
+	Mailers (100.0%)
+	Helpers (93.75%) The missing part is for flashing errors with no predefined error message.
+	Libraries (100.0%)
+
 
 ###In Total
 	All Files 98.9%
@@ -142,13 +156,11 @@
 ##heroku
 
 	Performance: 
-		all parts work fine except the usage of gmail gem behaves differently under development mode 
-		and production mode. 
-		To be more specific, some methods supported under development mode are not uasable after 
-		running our app on heroku. Except this one, no other production error.
+		All parts work fine!!!!
+		
 =========
 ###Relevant Links
-[url to Gmail2Calendar on heroku](https://gmail2calendar.herokuapp.com)
+[Url to Gmail2Calendar on heroku](https://gmail2calendar.herokuapp.com)
 
 [Using Devise on rails app](http://guides.railsgirls.com/devise/)
 
