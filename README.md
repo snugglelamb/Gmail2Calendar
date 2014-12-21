@@ -160,9 +160,10 @@
 		All parts work fine!!!!
 		
 =========
-###Relevant Links
+###Deployed Links
 [Url to Gmail2Calendar on heroku](https://gmail2calendar.herokuapp.com)
 
+###Relevant resources
 [Using Devise on rails app](http://guides.railsgirls.com/devise/)
 
 [Authentication using devise](https://deepakrip007.wordpress.com/2013/09/22/authentication-using-devise-in-rails-3/)
