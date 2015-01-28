@@ -1,4 +1,6 @@
 #Gmail2Calendar
+	CIT 597 team project: Zhi Li, Siyu Qiu
+
 ##Authentication
 <ul>Integrated with devise + omniauth to get access to user's google account. However, users need to register for a project first and provide the API ID and secret.</ul>
 ##User story and testing
